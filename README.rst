@@ -1,5 +1,7 @@
 .. contents :: :local:
 
+**This Script is not installing anything at this moment, it is just checking and telling you missing dependencies !!!**
+
 Introduction
 --------------
 
