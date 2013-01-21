@@ -1,9 +1,9 @@
 #!/bin/bash
-# script inspired by:
-# http://www.mirkopagliai.it/bash-scripting-verificare-e-installare-dipendenze-mancanti/
-# it will check for all dependencies we need to install Plone
-# if some missing it will install them
-# Version: 0.1.beta
+# Inspired by:  http://www.mirkopagliai.it/
+# Description:  will check and install Plone [http://plone.org] dependencies
+# License:      GPL
+# Version:      0.1.beta
+#================================================
 
 # Colors
 txtrst=$(tput sgr0) # Text reset
