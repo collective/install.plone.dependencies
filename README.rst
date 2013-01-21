@@ -14,7 +14,7 @@ Usage
 
 * Download the script::
 
-    wget https://github.com/collective/install.plone.dependencies/blob/master/install.plone.dependencies.sh
+    wget https://raw.github.com/collective/install.plone.dependencies/master/install.plone.dependencies.sh
 
 * Make is executable::
 
