@@ -2,7 +2,7 @@
 # Inspired by:  http://www.mirkopagliai.it/
 # Description:  will check and install Plone [http://plone.org] dependencies
 # License:      GPL
-# Version:      0.1.beta
+# Version:      0.1.b1
 #================================================
 
 # Colors
