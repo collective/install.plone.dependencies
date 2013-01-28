@@ -16,19 +16,27 @@
 debianINST()
 {
     # List of Dependencies to Install
-    APT_FILES="build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils"
+    DEPENDENCIES=(build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils)
  
     #apt-get runs in quiet mode to avoid lots of output
     #echo -n "Updating System ..."
     #apt-get -q -q update 
 
     # check them ....
-    #PKGSTOINSTALL=""
+    PKGSTOINSTALL=""
+    for (( i=0; i<${tLen=${#DEPENDENCIES[@]}}; i++ )); do
     #for (( i=0; i<${tLen=${#APT_FILES[@]}}; i++ )); do
     #for i in "$APT_FILES"; do
-    for packages in "${APT_FILES[@]}"; do
+    #for i in "${APT_FILES[@]}"; do
+        if [[ ! `dpkg -l | grep -w "ii  ${DEPENDENCIES[$i]} "` ]]; then
+            PKGSTOINSTALL=$PKGSTOINSTALL" "${DEPENDENCIES[$i]}
+        else
+        PKGSTOINSTALL=$PKGSTOINSTALL" "${DEPENDENCIES[$i]}
+        fi
+        
+        
     #echo -n "${packages}"
-    dpkg -l "${packages}"
+    #dpkg -l "${packages}"
     #PKG_OK=$(dpkg-query -W --showformat='${Status}\n' | grep -q "install ok installed")
     #PKG_OK=$(dpkg-query -W --showformat='${Status}\n'${APT_FILES[$i]} | grep -q "install ok installed")
     #if dpkg-query -Wf'${db:Status-abbrev}'2>/dev/null | grep -q '^i' ; then
@@ -43,13 +51,44 @@ debianINST()
         #echo -n "Installing missing Dependencies "${APT_FILES}""
     #else
     #    echo -n "busted"
-    #fi
+    
     done
+    # If some dependencies are missing, install them
+    if [ "$PKGSTOINSTALL" != "" ]; then
+        echo -n "Installing missing Dependencies"
+        #apt-get --force-yes --yes install $PKGSTOINSTALL
+        echo -n "$PKGSTOINSTALL"
+    else
+        echo -n "busted Something went wrong"
+    fi
 }
 
-debianINST
+#debianINST
+#
+checkDEBIAN()
+{
+    DEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils'
+    for package in $DEPS; do
+    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
+    #dpkg-query -l $package
+    echo Checking for $package: $PKG_OK
+    if [ "" == "$PKG_OK" ]; then
+        echo "Installing $package"
+        #sudo apt-get --force-yes --yes install the.package.name
+    fi
+done
 
 
+}
+
+checkDEBIAN
+
+#todo:
+#function for fedora
+#check os on top of script
+#cleanup the debian/ubuntu mess
+#split debian and ubuntu, for this we have to tweak the check os script/function
+#add centos
 # # What dependencies are missing?
 # PKGSTOINSTALL=""
 # for (( i=0; i<${tLen=${#DEPENDENCIES[@]}}; i++ )); do
