@@ -11,7 +11,8 @@
 
 #echo “Welcome to ${txtred} Checking for missing Dependencies .... ${txtrst}!”
 
-
+# First some functions ....
+#===========================
 # Debian/Ubuntu
 debianINST()
 {
@@ -80,39 +81,18 @@ done
 
 }
 
+# Here we will try to figure out which OS it is we are talking about
+# and assigning the right function to the right OS
+#=====================================================================
+
+
 checkDEBIAN
 
 #todo:
 #function for fedora
-#check os on top of script
+#include check os script
 #cleanup the debian/ubuntu mess
 #split debian and ubuntu, for this we have to tweak the check os script/function
 #add centos
-# # What dependencies are missing?
-# PKGSTOINSTALL=""
-# for (( i=0; i<${tLen=${#DEPENDENCIES[@]}}; i++ )); do
-#     # Debian, Ubuntu and derivatives (with dpkg)
-#     if which dpkg &> /dev/null; then
-#         if [[ ! `dpkg -l | grep -w "ii  ${DEPENDENCIES[$i]} "` ]]; then
-#             PKGSTOINSTALL=$PKGSTOINSTALL" "${DEPENDENCIES[$i]}
-#         fi
-#     # If it's impossible to determine if there are missing dependencies, mark all as missing
-#     else
-#         PKGSTOINSTALL=$PKGSTOINSTALL" "${DEPENDENCIES[$i]}
-#     fi
-# done
-
-# # If some dependencies are missing, install them
-# if [ "$PKGSTOINSTALL" != "" ]; then
-#     echo -n "Installing missing Dependencies"
-#     # Debian, Ubuntu and derivatives (with apt-get)
-#     if which apt-get &> /dev/null; then
-#         echo -n "$PKGSTOINSTALL"
-#         #apt-get --force-yes --yes install $PKGSTOINSTALL
-#     # Else, if no package manager has been founded
-#     else
-#         echo "ERROR: Something went wrong. Please, install manually ${DEPENDENCIES[*]}."
-#     fi
-# fi
 
 
