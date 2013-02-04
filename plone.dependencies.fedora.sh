@@ -16,4 +16,7 @@ yum -y install wv xpdf libxslt-devel zlib-devel libxml2-devel python-devel pytho
 # harder to check all packages ...
 # - check for already installed packages
 # - yum -s according to the wiki [not tested, yet]
-# - rewrite header of this script, remove Inspired by, move that to credits 
+# - rewrite header of this script, remove Inspired by, move that to credits
+# - some links: http://unix.stackexchange.com/questions/23085/yum-groupinstall-development-libraries
+# - http://www.cyberciti.biz/faq/rhel-yum-grouplist-groupinstall-option-not-working/
+# - http://thevagabondgeek.com/5-centos-yum-groupinstall-basics
