@@ -20,7 +20,7 @@ debianINST()
 
     #apt-get runs in quiet mode to avoid lots of output
     #echo -n "Updating System ..."
-    #apt-get -q -q update 
+    #apt-get -q -q update
 
     # check them ....
     PKGSTOINSTALL=""
