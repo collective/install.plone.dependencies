@@ -17,7 +17,7 @@ debianINST()
 {
     # List of Dependencies to Install
     DEPENDENCIES=(build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils)
- 
+
     #apt-get runs in quiet mode to avoid lots of output
     #echo -n "Updating System ..."
     #apt-get -q -q update 
@@ -33,8 +33,7 @@ debianINST()
         else
         PKGSTOINSTALL=$PKGSTOINSTALL" "${DEPENDENCIES[$i]}
         fi
-        
-        
+
     #echo -n "${packages}"
     #dpkg -l "${packages}"
     #PKG_OK=$(dpkg-query -W --showformat='${Status}\n' | grep -q "install ok installed")
@@ -51,7 +50,7 @@ debianINST()
         #echo -n "Installing missing Dependencies "${APT_FILES}""
     #else
     #    echo -n "busted"
-    
+
     done
     # If some dependencies are missing, install them
     if [ "$PKGSTOINSTALL" != "" ]; then
