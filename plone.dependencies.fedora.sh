@@ -12,5 +12,8 @@ yum -y groupinstall "Development Tools"
 yum -y install wv xpdf libxslt-devel zlib-devel libxml2-devel python-devel python-lxml libgsasl-devel openssl openssl-devel glibc-devel ncurses-devel
 
 # ToDo
-# check for already installed packages
-# yum -s according to the wiki [not tested, yet]
+# - switch group install development tools, to only packages we need, otherwise we will install too much crap and it will be
+# harder to check all packages ...
+# - check for already installed packages
+# - yum -s according to the wiki [not tested, yet]
+# - rewrite header of this script, remove Inspired by, move that to credits 
