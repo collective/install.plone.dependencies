@@ -26,10 +26,11 @@ elif [ -f "/etc/redhat-release" ]; then
 # new for debian and or ubuntu now we use lsb_release
 # check if debian or ubuntu
 elif [ -f "/etc/debian_version" ]; then
-        LSB=$(lsb_release -c | egrep -o 'wheezy|precise')
+        LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze')
         case $LSB in
                 wheezy) OS='debian';;
                 precise) OS='ubuntu';;
+                squeeze) OS='squeeze';;
         esac
 
 # this could come in handy, because sometimes the names of packages are slightly different
