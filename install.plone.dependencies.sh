@@ -50,20 +50,31 @@ installSqueeze()
 done
 }
 
+#BELOW IS NOT TESTED YET, IT IS JUST A BRAIN DUMP !!!
 
-
-# Here we will try to figure out which OS it is we are talking about
-# and assigning the right function to the right OS
+# We start with Debian/Ubuntu checks, later we will add more OS's
 #=====================================================================
+# for debian and or ubuntu we use 'lsb_release'
+# check if debian or ubuntu
+if [ -f "/etc/debian_version" ]; then
+        LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze')
+        case $LSB in
+                wheezy) OS='wheezy';;
+                precise) OS='ubuntu';;
+                squeeze) OS='squeeze';;
+        esac
+fi
 
+if [ "$OS" == 'ubuntu' ]; then
+        installPrecise
+else
+        error_exit "It seems your OS is not Ubuntu"
+fi
 
-#checkDEBIAN
 
 #todo:
 #function for fedora
 #include check os script
-#cleanup the debian/ubuntu mess
-#split debian and ubuntu, for this we have to tweak the check os script/function
 #add centos
-
+#add fedora
 
