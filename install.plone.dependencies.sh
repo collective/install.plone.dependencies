@@ -57,11 +57,12 @@ done
 # for debian and or ubuntu we use 'lsb_release'
 # check if debian or ubuntu
 if [ -f "/etc/debian_version" ]; then
-        LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze')
+        LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze|quantal')
         case $LSB in
                 wheezy) OS='wheezy';;
                 precise) OS='ubuntu';;
                 squeeze) OS='squeeze';;
+                quantal) OS='ubuntu';;
         esac
 fi
 
