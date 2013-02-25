@@ -19,23 +19,16 @@ elif [ -f "/etc/redhat-release" ]; then
                 Red.Hat) OS='redhat';;
         esac
 
-# Check for debian_version
-#elif [ -f "/etc/debian_version" ]; then
-#    OS='debian'
 
 # new for debian and or ubuntu now we use lsb_release
 # check if debian or ubuntu
 elif [ -f "/etc/debian_version" ]; then
         LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze')
         case $LSB in
-                wheezy) OS='debian';;
+                wheezy) OS='wheezy';;
                 precise) OS='ubuntu';;
                 squeeze) OS='squeeze';;
         esac
-
-# this could come in handy, because sometimes the names of packages are slightly different
-# in debian and ubuntu
-
 
 # Check for arch-release
 elif [ -f "/etc/arch-release" ]; then
@@ -50,5 +43,3 @@ fi
 # echo the result
 echo "$OS"
 
-#todo:
-# rewrite all to use lsb_release, well where it is possible
