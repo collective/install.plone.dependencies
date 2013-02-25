@@ -4,7 +4,6 @@
 # Version:      0.1.b1
 #================================================
 
-
 # Check if user is root or using sudo
 # Sanity Check: Test if the script runs as root
 if [ "$(whoami)" != root ] ; then
@@ -15,6 +14,13 @@ fi
 
 # First some functions ....
 #===========================
+
+# First our error_exit
+error_exit()
+{
+    echo "$1" 1>&2
+    exit 1
+}
 
 installPrecise()
 {
