@@ -22,7 +22,7 @@ error_exit()
     exit 1
 }
 
-installPrecise()
+installUbuntu()
 {
     PRECISEDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils'
     for package in $PRECISEDEPS; do
@@ -67,7 +67,7 @@ if [ -f "/etc/debian_version" ]; then
 fi
 
 if [ "$OS" == 'ubuntu' ]; then
-        installPrecise
+        installUbuntu
 else
         error_exit "It seems your OS is not Ubuntu"
 fi
