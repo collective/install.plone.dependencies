@@ -7,21 +7,23 @@ Introduction
 
 *install.plone.dependencies* is a script with the aim of making the install of dependencies for Plone easier for beginners.
 
-Currently this script is tested with Ubuntu 12.04, 12.10, Fedora 17
+Currently this script is tested with Ubuntu 12.04.
 
 Usage
 ------
 
 * Download the script::
 
-    wget https://raw.github.com/collective/install.plone.dependencies/master/install.plone.dependencies.sh
+    wget https://raw.github.com/collective/install.plone.dependencies/master/install_dependencies.sh
 
 * Make is executable::
 
-    chmod +x install.plone.dependencies.sh
+    chmod +x install_dependencies.sh
 
 * Run it::
 
-    ./install.plone.dependencies.sh
+    ./install_dependencies.sh
 
-More soon !
+* Run it with arguments::
+
+   ./install_dependencies --ubuntu
