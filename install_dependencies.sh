@@ -58,7 +58,7 @@ fi
 }
 
 # run the script with arguments or not for example
-# install.sh --ubuntu, use that only if you now
+# install_dependencies.sh --ubuntu, use that only if you now
 # what are you doing
 case "$1" in
     "--ubuntu")
