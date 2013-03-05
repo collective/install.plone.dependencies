@@ -8,6 +8,13 @@ if [ "$(whoami)" != root ] ; then
     exit 1
 fi
 
+# First our error_exit
+error_exit()
+{
+    echo "$1" 1>&2
+    exit 1
+}
+
 
 install_Ubuntu()
 {
