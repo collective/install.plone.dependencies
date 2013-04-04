@@ -29,7 +29,7 @@ install_Ubuntu()
     #    "$package":"$PKG_OK" \n
     #    Want to install ? " 20 78
     #    #echo Checking for $package: $PKG_OK
-        if [ "" == "$PKG_OK" ]; then
+        if [ -n "$PKG_OK" ]; then
     #        echo "Installing $package"
             MISSING_DEP=$MISSING_DEP' '$package
             echo $MISSING_DEP
@@ -37,7 +37,7 @@ install_Ubuntu()
         fi
     done
 #    echo $MISSING_DEP
-    if [ '' == "$MISSING_DEP" ]; then
+    if [ -n "$MISSING_DEP" ]; then
         whiptail --title "Info" --msgbox "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
         Want to install ? " 20 78
         apt-get --force-yes --yes install $MISSING_DEP
