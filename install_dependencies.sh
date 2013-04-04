@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# Check if user is root or using sudo
-# Sanity Check: Test if the script runs as root
-if [ "$(whoami)" != root ] ; then
-    echo -e "\033[33;31m Please run this script as root or with sudo"
-    #echo "Please run this script as root!"
-    exit 1
-fi
-
 # First our error_exit
 error_exit()
 {
@@ -15,21 +7,30 @@ error_exit()
     exit 1
 }
 
+# Check if user is root or using sudo
+# Sanity Check: Test if the script runs as root
+if [ "$(whoami)" != root ] ; then
+    echo -e "\033[33;31m Please run this script as root or with sudo"
+    #echo "Please run this script as root!"
+    #exit 1
+    error_exit
+fi
 
 install_Ubuntu()
 {
     UBUNTUDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils'
     MISSING_DEP=''
     for package in $UBUNTUDEPS; do
-    #    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
-        PKG_OK=$(apt-cache search --installed $package)
+        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
+    #    PKG_OK=$(apt-cache search --installed $package)
         #dpkg-query -l $package
         #echo "Checking for packages, please wait"
     #    whiptail --title "Info" --msgbox "Checking for \n
     #    "$package":"$PKG_OK" \n
     #    Want to install ? " 20 78
     #    #echo Checking for $package: $PKG_OK
-        if [ -n "$PKG_OK" ]; then
+        if [ "" == "$PKG_OK" ]; then
+    #    if [ -n "$PKG_OK" ]; then
     #        echo "Installing $package"
             MISSING_DEP=$MISSING_DEP' '$package
             echo $MISSING_DEP
@@ -38,9 +39,16 @@ install_Ubuntu()
     done
 #    echo $MISSING_DEP
     if [ -n "$MISSING_DEP" ]; then
-        whiptail --title "Info" --msgbox "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
         Want to install ? " 20 78
-        apt-get --force-yes --yes install $MISSING_DEP
+        givestatus=$?
+        if [ $givestatus = 0 ]; then
+            echo "hell yeah !."
+            #apt-get update
+            #apt-get --force-yes --yes install $MISSING_DEP
+        else
+            error_exit "It decided not to install" # ask to move on?
+        fi
     fi
 }
 
