@@ -26,4 +26,4 @@ Usage
 
 * Run it with arguments::
 
-   ./install_dependencies --ubuntu
+   ./install_dependencies.sh --ubuntu
