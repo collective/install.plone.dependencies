@@ -24,6 +24,7 @@ install_Ubuntu()
     #dpkg-query -l $package
     echo Checking for $package: $PKG_OK
     if [ "" == "$PKG_OK" ]; then
+        echo "Please wait and be patient, check is running"
         echo "Installing $package"
         #apt-get --force-yes --yes install $package
     fi
