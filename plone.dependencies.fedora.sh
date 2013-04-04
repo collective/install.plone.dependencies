@@ -14,10 +14,24 @@
 
 #yum -y install wv xpdf libxslt-devel zlib-devel libxml2-devel python-devel python-lxml libgsasl-devel openssl openssl-devel glibc-devel ncurses-devel
 
+from the mlist: [christian.ledermann@gmail.com]
+I use;
+
+yum install gcc-c++ patch openssl-devel libjpeg-devel libxslt-devel
+readline-devel make which
+
+yum install python-ldap wv xpdf libxslt-devel \
+    zlib-devel libxml2-devel python-ldap python-devel \
+    python-lxml libgsasl-devel openssl openssl-devel glibc-devel ncurses-devel
+to install all necessary dependencies on RH/Centos
+
 
 checkFEDORA()
 {
-FEDORARPM='gcc gcc-c++ autoconf automake binutils gettext libtool make pkgconfig strace bison flex gdb patch'
+FEDORARPM='gcc-c++ patch openssl-devel libjpeg-devel libxslt-devel \
+readline-devel make which wv xpdf libxslt-devel zlib-devel \
+libxml2-devel python-ldap python-devel python-lxml libgsasl-devel \
+openssl openssl-devel glibc-devel ncurses-devel'
     for package in $FEDORARPM; do
     RPM_OK=$(rpm -qa $package)
     if [ "" == "$RPM_OK" ]; then
