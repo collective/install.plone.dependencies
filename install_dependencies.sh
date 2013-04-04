@@ -11,8 +11,6 @@ error_exit()
 # Sanity Check: Test if the script runs as root
 if [ "$(whoami)" != root ] ; then
     echo -e "\033[33;31m Please run this script as root or with sudo"
-    #echo "Please run this script as root!"
-    #exit 1
     error_exit
 fi
 
@@ -22,21 +20,11 @@ install_Ubuntu()
     MISSING_DEP=''
     for package in $UBUNTUDEPS; do
         PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
-    #    PKG_OK=$(apt-cache search --installed $package)
-        #dpkg-query -l $package
-        #echo "Checking for packages, please wait"
-    #    whiptail --title "Info" --msgbox "Checking for \n
-    #    "$package":"$PKG_OK" \n
-    #    Want to install ? " 20 78
-    #    #echo Checking for $package: $PKG_OK
         if [ "" == "$PKG_OK" ]; then
-    #    if [ -n "$PKG_OK" ]; then
-    #        echo "Installing $package"
             MISSING_DEP=$MISSING_DEP' '$package
-#            echo $MISSING_DEP
         fi
     done
-#    echo $MISSING_DEP
+
     if [ -n "$MISSING_DEP" ]; then
         whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
         Want to install ? " 20 78
@@ -50,9 +38,9 @@ install_Ubuntu()
     fi
 }
 
-# info message, we use whipetail for that
+# Info message, we use whipetail for that
 do_Readme() {
-  whiptail --title "Check Dependencies" --msgbox "Welcome, \n
+  whiptail --title "Check Dependencies" --yesno "Welcome, \n
 This script will check your system for dependecies and if needed,
 install them. \n
 For more information you should check developer.plone org.
@@ -61,9 +49,15 @@ For help and support you should check plone.org/support.\n
 This script is tested with Ubuntu versions 12.04, 13.04 \n
 You need to be root or have sudo permissions
 Enjoy!" 20 78
+readmestatus=$?
+if [ $readmestatus = 1 ]; then
+    error_exit "It decided not to install"
+else
+    :
+fi
 }
 
-# info message, we use whipetail for that
+# Info message, we use whipetail for that
 do_Farewell() {
   whiptail --title "Check Dependencies" --msgbox "All missing dependencies has been installed.\n
 Now, You are ready to install Plone itself.\n\n\n
@@ -71,7 +65,7 @@ Farewell my friend and may the Force be with you!" 20 78
 }
 
 
-# check if ubuntu [debian check will come later]
+# Check if ubuntu [debian check will come later]
 check_OS()
 {
 if [ -f "/etc/debian_version" ]; then
@@ -91,9 +85,9 @@ else
 fi
 }
 
-# run the script with arguments or not for example
-# install_dependencies.sh --ubuntu, use that only if you now
-# what are you doing
+# Run the script with arguments or not for example:
+# install_dependencies.sh --ubuntu
+# use that only if you now what are you doing
 case "$1" in
     "--ubuntu")
         check_OS
