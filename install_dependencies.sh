@@ -22,7 +22,10 @@ install_Ubuntu()
     for package in $UBUNTUDEPS; do
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
     #dpkg-query -l $package
-    echo "Checking for packages, please wait"
+    #echo "Checking for packages, please wait"
+    whiptail --title "Info" --msgbox "Checking for \n
+    "$package":"$PKG_OK" \n
+    Want to install ? " 20 78
     #echo Checking for $package: $PKG_OK
     if [ "" == "$PKG_OK" ]; then
         echo "Installing $package"
@@ -43,6 +46,7 @@ This script is tested with Ubuntu 12.04 \n
 You need to be root or have sudo permissions
 Enjoy!" 20 78
 }
+
 
 
 # check if ubuntu [debian check will come later]
