@@ -19,19 +19,29 @@ error_exit()
 install_Ubuntu()
 {
     UBUNTUDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils'
+    MISSING_DEP=''
     for package in $UBUNTUDEPS; do
-    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
-    #dpkg-query -l $package
-    #echo "Checking for packages, please wait"
-    whiptail --title "Info" --msgbox "Checking for \n
-    "$package":"$PKG_OK" \n
-    Want to install ? " 20 78
-    #echo Checking for $package: $PKG_OK
-    if [ "" == "$PKG_OK" ]; then
-        echo "Installing $package"
-        #apt-get --force-yes --yes install $package
+    #    PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
+        PKG_OK=$(apt-cache search --installed $package)
+        #dpkg-query -l $package
+        #echo "Checking for packages, please wait"
+    #    whiptail --title "Info" --msgbox "Checking for \n
+    #    "$package":"$PKG_OK" \n
+    #    Want to install ? " 20 78
+    #    #echo Checking for $package: $PKG_OK
+        if [ "" == "$PKG_OK" ]; then
+    #        echo "Installing $package"
+            MISSING_DEP=$MISSING_DEP' '$package
+            echo $MISSING_DEP
+            #apt-get --force-yes --yes install $package
+        fi
+    done
+#    echo $MISSING_DEP
+    if [ '' == "$MISSING_DEP" ]; then
+        whiptail --title "Info" --msgbox "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+        Want to install ? " 20 78
+        apt-get --force-yes --yes install $MISSING_DEP
     fi
-done
 }
 
 # info message, we use whipetail for that
