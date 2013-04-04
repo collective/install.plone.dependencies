@@ -51,8 +51,8 @@ if [ -f "/etc/debian_version" ]; then
         LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze|quantal')
         case $LSB in
                 wheezy) OS='wheezy';;
-                precise) OS='ubuntu';;
                 squeeze) OS='squeeze';;
+                precise) OS='ubuntu';;
                 quantal) OS='ubuntu';;
         esac
 fi
