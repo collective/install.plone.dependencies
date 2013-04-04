@@ -22,9 +22,9 @@ install_Ubuntu()
     for package in $UBUNTUDEPS; do
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
     #dpkg-query -l $package
-    echo Checking for $package: $PKG_OK
+    echo "Checking for packages, please wait"
+    #echo Checking for $package: $PKG_OK
     if [ "" == "$PKG_OK" ]; then
-        echo "Please wait and be patient, check is running"
         echo "Installing $package"
         #apt-get --force-yes --yes install $package
     fi
