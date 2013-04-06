@@ -10,7 +10,7 @@ error_exit()
 # Check if user is root or using sudo
 # Sanity Check: Test if the script runs as root
 if [ "$(whoami)" != root ] ; then
-    echo -e "\033[33;31m Please run this script as root or with sudo"
+    echo "Please run this script as root or with sudo"
     error_exit
 fi
 
@@ -100,25 +100,21 @@ Farewell my friend and may the Force be with you!" 20 78
 check_OS()
 {
 if [ -f "/etc/debian_version" ]; then
-        LSB=$(lsb_release -c | egrep -o 'wheezy|precise|squeeze|quantal')
+        LSB=$(lsb_release -c | egrep -o 'wheezy|squeeze|precise|quantal|raring')
         case $LSB in
                 wheezy) OS='wheezy';;
                 squeeze) OS='squeeze';;
                 precise) OS='ubuntu';;
                 quantal) OS='ubuntu';;
+                raring)  OS='ubuntu';;
         esac
-fi
 
-if [ "$OS" == 'ubuntu' ]; then
-        install_Ubuntu
-    else
-        error_exit "It seems your OS is not Ubuntu"
-fi
 
-if [ "$OS" == 'squeeze' ]; then
-        install_Squeeze
-    else
-        error_exit "It seems your OS is not Debian Squezze"
+elif [ "$OS" == 'ubuntu' ]; then
+install_Ubuntu
+
+elif [ "$OS" == 'squeeze' ]; then
+    install_Squeeze
 fi
 }
 
