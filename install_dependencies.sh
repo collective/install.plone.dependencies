@@ -82,7 +82,7 @@ You need to be root or have sudo permissions
 Enjoy!" 20 78
 readmestatus=$?
 if [ $readmestatus = 1 ]; then
-    error_exit "It decided not to install"
+    error_exit "You decided not to install"
 else
     :
 fi
