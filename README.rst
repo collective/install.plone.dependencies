@@ -6,7 +6,7 @@ Introduction
 
 *install.plone.dependencies* is a script with the aim of making the install of dependencies for Plone easier for beginners.
 
-Currently this script is tested with Ubuntu 12.04. and 13.04, Support for more Operating Systems may come or not ...
+Currently this script is tested with Ubuntu 12.04. Support for more Operating Systems may come or not ...
 
 
 Requirements
