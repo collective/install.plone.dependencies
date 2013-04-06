@@ -111,7 +111,7 @@ if [ -f "/etc/debian_version" ]; then
 
 
 elif [ "$OS" == 'ubuntu' ]; then
-install_Ubuntu
+    install_Ubuntu
 
 elif [ "$OS" == 'squeeze' ]; then
     install_Squeeze
@@ -134,6 +134,6 @@ case "$1" in
     "")
         do_Readme
         check_OS
-        do_Farewell
+#        do_Farewell
     ;;
 esac
