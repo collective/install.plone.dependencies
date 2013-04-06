@@ -35,7 +35,7 @@ install_Ubuntu()
             apt-get update
             apt-get --force-yes --yes install $MISSING_UBUNTUDEPS
         else
-            error_exit "It decided not to install" # ask to move on?
+            error_exit "You decided not to install" # ask to move on?
         fi
     fi
 }
@@ -61,7 +61,7 @@ install_Squeeze()
             apt-get update
             apt-get --force-yes --yes install $MISSING_SQUEEZEDEPS
         else
-            error_exit "It decided not to install" # ask to move on?
+            error_exit "You decided not to install" # ask to move on?
         fi
     fi
 
