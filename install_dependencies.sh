@@ -54,7 +54,7 @@ install_Squeeze()
     done
 
     if [ -n "$MISSING_SQUEEZEDEPS" ]; then
-        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_UBUNTUDEPS// /\n} \n
+        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_SQUEEZEDEBS// /\n} \n
         Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
