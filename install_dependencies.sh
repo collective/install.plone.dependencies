@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # First our error_exit
 error_exit()
@@ -99,7 +99,6 @@ Farewell my friend and may the Force be with you!" 20 78
 }
 
 
-# Check if ubuntu [debian check will come later]
 check_OS()
 {
 if [ -f "/etc/debian_version" ]; then
@@ -140,6 +139,6 @@ case "$1" in
     "")
         do_Readme
         check_OS
-#        do_Farewell
+        do_Farewell
     ;;
 esac
