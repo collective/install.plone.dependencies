@@ -42,9 +42,12 @@ install_Ubuntu()
 
 install_Squeeze()
 {
-    SQUEEZEDEPS='python-dev build-essential libssl-dev libxml2-dev libxslt1-dev \
-    libbz2-dev python-setuptools libjpeg62-dev libreadline-gplv2-dev wv \
-    poppler-utils python-imaging'
+    SQUEEZEDEPS='build-essential wv poppler-utils python2.6-dev \
+    python-imaginglibssl-dev libjpeg62-dev zlib1g-dev \
+    libreadline5-dev libxml2-dev python-libxml2 libxslt1-dev \
+    python-libxslt1 libpcre3 libpcre3-dev xpdf-utils \
+    libreadline5 zlib1g  libjpeg62 libssl0.9.8 cron groff-base \
+    python-dev'
     MISSING_SQUEEZEDEPS=''
     for package in $SQUEEZEDEPS; do
         PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
