@@ -19,26 +19,55 @@ install_Ubuntu()
     UBUNTUDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev \
     libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev \
     libreadline-gplv2-dev python-imaging wv poppler-utils'
-    MISSING_DEP=''
+    MISSING_UBUNTUDEPS=''
     for package in $UBUNTUDEPS; do
         PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
         if [ "" == "$PKG_OK" ]; then
-            MISSING_DEP=$MISSING_DEP' '$package
+            MISSING_UBUNTUDEPS=$MISSING_UBUNTUDEPS' '$package
         fi
     done
 
-    if [ -n "$MISSING_DEP" ]; then
-        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+    if [ -n "$MISSING_UBUNTUDEPS" ]; then
+        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_UBUNTUDEPS// /\n} \n
         Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
             apt-get update
-            apt-get --force-yes --yes install $MISSING_DEP
+            apt-get --force-yes --yes install $MISSING_UBUNTUDEPS
         else
             error_exit "It decided not to install" # ask to move on?
         fi
     fi
 }
+
+install_Squeeze()
+{
+    SQUEEZEDEPS='python-dev build-essential libssl-dev libxml2-dev libxslt1-dev \
+    libbz2-dev python-setuptools libjpeg62-dev libreadline-gplv2-dev wv \
+    poppler-utils python-imaging'
+    MISSING_SQUEEZEDEPS=''
+    for package in $SQUEEZEDEPS; do
+        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
+        if [ "" == "$PKG_OK" ]; then
+            MISSING_SQUEEZEDEPS=$MISSING_SQUEEZEDEPS' '$package
+        fi
+    done
+
+    if [ -n "$MISSING_SQUEEZEDEPS" ]; then
+        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_UBUNTUDEPS// /\n} \n
+        Want to install ? " 20 78
+        givestatus=$?
+        if [ $givestatus = 0 ]; then
+            apt-get update
+            apt-get --force-yes --yes install $MISSING_SQUEEZEDEPS
+        else
+            error_exit "It decided not to install" # ask to move on?
+        fi
+    fi
+
+}
+
+
 
 # Info message, we use whipetail for that
 do_Readme() {
