@@ -111,16 +111,27 @@ fi
 
 if [ "$OS" == 'ubuntu' ]; then
         install_Ubuntu
-else
+    else
         error_exit "It seems your OS is not Ubuntu"
 fi
+
+if [ "$OS" == 'squeeze' ]; then
+        install_Squeeze
+    else
+        error_exit "It seems your OS is not Debian Squezze"
+fi
 }
+
 
 # Run the script with arguments or not for example:
 # install_dependencies.sh --ubuntu
 # use that only if you now what are you doing
 case "$1" in
     "--ubuntu")
+        check_OS
+    ;;
+
+    "--squezze")
         check_OS
     ;;
 
