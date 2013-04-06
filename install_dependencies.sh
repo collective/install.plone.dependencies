@@ -108,13 +108,16 @@ if [ -f "/etc/debian_version" ]; then
                 quantal) OS='ubuntu';;
                 raring)  OS='ubuntu';;
         esac
+fi
 
-
-elif [ "$OS" == 'ubuntu' ]; then
+if [ "$OS" == 'ubuntu' ]; then
     install_Ubuntu
 
 elif [ "$OS" == 'squeeze' ]; then
     install_Squeeze
+
+else
+    echo "we dont know that os"
 fi
 }
 
