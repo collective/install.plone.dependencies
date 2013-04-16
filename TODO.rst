@@ -5,4 +5,4 @@ Todo
 - make less use of sudo or root, build password prompt into whipetail
 - rewrite check_dependencies script
 - rewrite whipetail messages to proper messages
-- fix centos libxml issue
+- fix centos libxml issue, stece is doingthat with an lxm_static buildout
