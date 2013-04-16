@@ -80,7 +80,7 @@ install them. \n
 For more information you should check developer.plone org.
 For help and support you should check plone.org/support.\n
 
-This script is tested with Ubuntu versions 12.04, 13.04 \n
+This script is tested with Ubuntu 12.04 \n
 You need to be root or have sudo permissions
 Enjoy!" 20 78
 readmestatus=$?
