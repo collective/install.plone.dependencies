@@ -31,8 +31,9 @@ install_Squeeze()
         Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            apt-get update
-            apt-get --force-yes --yes install $MISSING_SQUEEZE
+            whiptail --title "Password" --passwordbox "Please enter your password" 8 78 3>&1 1>&2 2>&3
+            #TODO: add now line for su
+            #apt-get --force-yes --yes install $MISSING_SQUEEZE
             #TODO:for debian make sure to use root [su[ and sudo as an option
         else
             error_exit "You decided not to install"
