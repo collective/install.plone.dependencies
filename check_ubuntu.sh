@@ -28,8 +28,9 @@ install_Ubuntu()
         whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_UBUNTUDEPS// /\n} \n
         Do want to install these packages ? " 20 78
         if [ $givestatus = 0 ]; then
+            whiptail --title "Sudo Password" --passwordbox "Please enter the password" 8 78 3>&1 1>&2 2>&3
             sudo -S apt-get update
-            sudo -S apt-get --force-yes --yes install $MISSING_UBUNTU
+            #sudo -S apt-get --force-yes --yes install $MISSING_UBUNTU
         else
          whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 20 78
