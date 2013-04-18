@@ -38,3 +38,4 @@ Want to install ? " 20 78
         fi
 fi
 }
+install_Ubuntu
