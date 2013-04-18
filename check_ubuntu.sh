@@ -31,6 +31,9 @@ Want to install ? " 20 78
             whiptail --title "Sudo Password" --nocancel --passwordbox "Please enter the password" 8 78 3>&1 1>&2 2>&3
             sudo -S apt-get update
             #sudo -S apt-get --force-yes --yes install $MISSING_DEP
+            sudo -K # remove sudo timestamp
+            #TODO: create here a popou, if passwd is false
+            # make oneline out of above lines
         else
             whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 8 78
