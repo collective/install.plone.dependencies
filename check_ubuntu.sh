@@ -33,7 +33,7 @@ Want to install ? " 20 78
             #sudo -S apt-get --force-yes --yes install $MISSING_DEP
         else
             whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
-         via this script, if you decide otherwise run this script again" 20 78
+         via this script, if you decide otherwise run this script again" 8 78
          error_exit
         fi
 fi

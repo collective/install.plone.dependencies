@@ -4,9 +4,6 @@
 # Version:      0.1
 #================================================
 
-# Source other scripts
-source check_ubuntu.sh
-
 # First our error_exit
 error_exit()
 {
@@ -27,7 +24,8 @@ You need to be root or have sudo permissions
 Enjoy!" 20 78
 readmestatus=$?
 if [ $readmestatus = 1 ]; then
-    error_exit "You decided not to install"
+    whiptail --title "Error" --msgbox "You decided to cancel this script" 8 78
+    error_exit
 else
     :
 fi
@@ -54,7 +52,9 @@ if [ -f "/etc/debian_version" ]; then
 fi
 
 if [ "$OS" == 'ubuntu' ]; then
-    install_Ubuntu
+    source check_ubuntu.sh 
+    #TODO: mv script to script dir and just call it,
+    # rewrite function to 'just' a script
 else
     whiptail --title "Error" --msgbox "I am sorry but it seems you are not using Ubuntu" 20 78
     error_exit
