@@ -11,30 +11,30 @@ error_exit()
     exit 1
 }
 
+
 install_Ubuntu()
 {
-    Ubuntu='build-essential libssl-dev libxml2-dev libxslt1-dev \
-    libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev \
-    libreadline-gplv2-dev python-imaging wv poppler-utils'
-    MISSING_UBUNTU=''
-    for package in $UBUNTU; do
-        PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
+    UBUNTUDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils'
+    MISSING_DEP=''
+    for package in $UBUNTUDEPS; do
+PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
         if [ "" == "$PKG_OK" ]; then
-           MISSING_UBUNTU=$MISSING_UBUNTU' '$package
-        fi 
-    done
+MISSING_DEP=$MISSING_DEP' '$package
+        fi
+done
 
-    if [ -n "$MISSING_UBUNTU" ]; then
-        whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_UBUNTUDEPS// /\n} \n
-        Do want to install these packages ? " 20 78
+if [ -n "$MISSING_DEP" ]; then
+whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+Want to install ? " 20 78
+        givestatus=$?
         if [ $givestatus = 0 ]; then
             whiptail --title "Sudo Password" --passwordbox "Please enter the password" 8 78 3>&1 1>&2 2>&3
             sudo -S apt-get update
-            #sudo -S apt-get --force-yes --yes install $MISSING_UBUNTU
+            #sudo -S apt-get --force-yes --yes install $MISSING_DEP
         else
-         whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
+            whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 20 78
          error_exit
-         fi
-    fi  
+        fi
+fi
 }
