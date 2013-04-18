@@ -24,7 +24,7 @@ MISSING_DEP=$MISSING_DEP' '$package
 done
 
 if [ -n "$MISSING_DEP" ]; then
-whiptail --title "Info" --yesno "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+whiptail --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then

@@ -20,9 +20,8 @@ For more information you should check developer.plone org.
 For help and support you should check plone.org/support.\n
 
 This script is tested with Ubuntu 12.04 \n
-Depending on your OS You will need to have root or sudo permissions \n
-to be able to install software.
-Enjoy!" 20 78
+Depending on your OS You will need to have root or sudo permissions.
+Continue ?" 20 78
 readmestatus=$?
 if [ $readmestatus = 1 ]; then
     whiptail --title "Error" --msgbox "You decided to cancel this script" 8 78
