@@ -60,3 +60,22 @@ else
     error_exit
 fi
 }
+# Run the script with arguments or not for example:
+# install_dependencies.sh --ubuntu
+# use that only if you now what are you doing
+case "$1" in
+    "--ubuntu")
+        check_OS
+    ;;
+
+    "--squezze")
+        check_OS
+    ;;
+
+    "")
+        do_Readme
+        check_OS
+        do_Farewell
+    ;;
+esac
+
