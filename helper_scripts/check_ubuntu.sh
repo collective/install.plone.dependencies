@@ -28,11 +28,12 @@ whiptail --title "Info" --yesno --scrolltext "These are packages that need to be
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            whiptail --title "Sudo Password" --nocancel --passwordbox "Please enter the password" 8 78 3>&1 1>&2 2>&3
-            sudo -S apt-get update
+            #whiptail --title "Sudo Password" --nocancel --passwordbox "Please enter the password" 8 78 3>&1 1>&2 2>&3
+            sudo apt-get update
+            #sudo -S apt-get update
             #sudo -S apt-get --force-yes --yes install $MISSING_DEP
             sudo -K # remove sudo timestamp
-            #TODO: create here a popou, if passwd is false
+            #TODO: create here a popup, if passwd is false
             # make oneline out of above lines
         else
             whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
