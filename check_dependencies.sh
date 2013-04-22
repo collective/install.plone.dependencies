@@ -52,7 +52,8 @@ if [ -f "/etc/debian_version" ]; then
 fi
 
 if [ "$OS" == 'ubuntu' ]; then
-    source check_ubuntu.sh 
+    helper_scripts/check_ubuntu.sh
+    #source check_ubuntu.sh
     #TODO: mv script to script dir and just call it,
     # rewrite function to 'just' a script
 else
