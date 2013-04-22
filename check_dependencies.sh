@@ -55,6 +55,9 @@ if [ "$OS" == 'ubuntu' ]; then
     #source check_ubuntu.sh
     #TODO: mv script to script dir and just call it,
     # rewrite function to 'just' a script
+elif [ "$OS" == 'wheezy' ]; then
+    helper_scripts/check_debian.sh
+
 else
     whiptail --title "Error" --msgbox "I am sorry but it seems you are not using Ubuntu" 20 78
     error_exit
@@ -66,10 +69,12 @@ fi
 case "$1" in
     "--ubuntu")
         check_OS
+        do_Farewell
     ;;
 
-    "--squezze")
+    "--debian")
         check_OS
+        do_Farewell
     ;;
 
     "")
