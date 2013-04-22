@@ -28,10 +28,10 @@ whiptail --title "Info" --yesno --scrolltext "These are packages that need to be
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            sudo apt-get update
-            #sudo -S apt-get update
-            #sudo -S apt-get --force-yes --yes install $MISSING_DEP
-            sudo -K # remove sudo timestamp
+            su -c apt-get update
+            #sudo -S apt-get update #we use sudo as default on ubuntu not on debian
+            #su -c apt-get --force-yes --yes install $MISSING_DEP
+            #sudo -K # remove sudo timestamp
             #TODO: create here a popup, if passwd is false
             # make oneline out of above lines
         else
