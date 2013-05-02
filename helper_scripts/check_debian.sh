@@ -28,8 +28,8 @@ whiptail --title "Info" --yesno --scrolltext "These are packages that need to be
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            su -c apt-get update
-            #su -c apt-get --force-yes --yes install $MISSING_DEP
+            su -c 'apt-get update'
+            #su -c 'apt-get --force-yes --yes install $MISSING_DEP'
             # TODO make oneline out of above lines
         else
             whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
