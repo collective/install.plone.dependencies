@@ -28,9 +28,7 @@ whiptail --title "Info" --yesno --scrolltext "These are packages that need to be
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            #whiptail --title "Sudo Password" --nocancel --passwordbox "Please enter the password" 8 78 3>&1 1>&2 2>&3
-            sudo apt-get update
-            #sudo -S apt-get update
+            sudo -S apt-get update
             #sudo -S apt-get --force-yes --yes install $MISSING_DEP
             sudo -K # remove sudo timestamp
             #TODO: create here a popup, if passwd is false
