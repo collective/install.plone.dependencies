@@ -44,6 +44,6 @@ fi
 install_CentOS
 
 
-
+#TODO: add whiptail message with use static-xml bla
 
 

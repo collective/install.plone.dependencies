@@ -38,6 +38,7 @@ Now, You are ready to install Plone itself.\n\n\n
 Farewell my friend and may the Force be with you!" 20 78
 }
 
+#TODO: add centos check
 check_OS()
 {
 if [ -f "/etc/debian_version" ]; then
