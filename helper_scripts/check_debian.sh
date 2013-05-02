@@ -29,11 +29,8 @@ Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
             su -c apt-get update
-            #sudo -S apt-get update #we use sudo as default on ubuntu not on debian
             #su -c apt-get --force-yes --yes install $MISSING_DEP
-            #sudo -K # remove sudo timestamp
-            #TODO: create here a popup, if passwd is false
-            # make oneline out of above lines
+            # TODO make oneline out of above lines
         else
             whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 8 78
