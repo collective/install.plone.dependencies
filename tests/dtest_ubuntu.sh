@@ -11,6 +11,6 @@ chmod +x check_dependencies.sh
 mkdir "$HELPDIR"
 cd "$HELPDIR"
 wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/dev/helper_scripts/check_ubuntu.sh
-wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/blob/dev/helper_scripts/check_debian.sh
+wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/dev/helper_scripts/check_debian.sh
 chmod +x check_ubuntu.sh
 chmod +x check_debian.sh
