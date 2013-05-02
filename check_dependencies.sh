@@ -49,6 +49,16 @@ if [ -f "/etc/debian_version" ]; then
                 quantal) OS='ubuntu';;
                 raring)  OS='ubuntu';;
         esac
+
+elif [ -f "/etc/redhat-release" ]; then
+    RHV=$(egrep -o 'Fedora|CentOS|Red.Hat' /etc/redhat-release)
+    case $RHV in
+        Fedora) OS='fedora';;
+        CentOS) OS='centos';;
+        Red.Hat) OS='redhat';;
+
+    esac
+
 fi
 
 if [ "$OS" == 'ubuntu' ]; then
@@ -59,8 +69,11 @@ if [ "$OS" == 'ubuntu' ]; then
 elif [ "$OS" == 'wheezy' ]; then
     helper_scripts/check_debian.sh
 
+elif [ "$OS" == 'centos' ]; then
+    helper_scripts/check_centos.sh
+
 else
-    whiptail --title "Error" --msgbox "I am sorry but it seems you are not using Ubuntu" 20 78
+    whiptail --title "Error" --msgbox "I am sorry but it can't find out which OS this is" 20 78
     error_exit
 fi
 }
@@ -77,6 +90,9 @@ case "$1" in
         check_OS
         do_Farewell
     ;;
+
+    "--centos")
+        check_OS
 
     "")
         do_Readme
