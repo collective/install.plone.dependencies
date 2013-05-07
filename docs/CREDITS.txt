@@ -1,0 +1,11 @@
+Share and Enjoy
+
+collective.install.plone.dependencies would not have been possible
+without the contribution of the following people:
+
+- Érico Andrei
+- Paul Roeland
+- Giacomo Spettoli
+- Sven Strack
+- Mikko Ohtamaa
+- Steve McMahon
