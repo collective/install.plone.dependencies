@@ -14,7 +14,7 @@ error_exit()
 
 install_Debian()
 {
-    DEBIANDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils'
+    DEBIANDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-gplv2-dev python-imaging wv poppler-utils sudo'
     MISSING_DEP=''
     for package in $DEBIANDEPS; do
 PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $package | grep "install ok installed")
