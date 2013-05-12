@@ -6,7 +6,7 @@ Introduction
 
 *install.plone.dependencies* is a script with the aim of making the install of dependencies for Plone easier for beginners.
 
-Currently this script is tested with Ubuntu 12.04, 12.10, 13.04 and Debian 6 [Squezze]
+Currently this script is tested with Ubuntu 12.04, 12.10, 13.04,Debian 7 [Wheezy] and Centos 6.3
 
 Usage
 ------
@@ -28,3 +28,7 @@ Usage
    ./install_dependencies.sh --ubuntu
 
    ./install_dependencies.sh --squezze
+
+   ./install_dependencies.sh --centos
+
+   ./install_dependencies.sh --help
