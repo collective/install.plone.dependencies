@@ -73,7 +73,7 @@ elif [ "$OS" == 'centos' ]; then
     helper_scripts/check_centos.sh
 
 else
-    whiptail --title "Error" --msgbox "I am sorry but it can't find out which OS this is" 20 78
+    whiptail --title "Error" --msgbox "I am sorry but I can't find out which OS this is" 20 78
     error_exit
 fi
 }
@@ -93,6 +93,11 @@ case "$1" in
 
     "--centos")
         check_OS
+    ;;
+
+    "--h|--help")
+        show_HELP
+    ;;
 
     "")
         do_Readme
