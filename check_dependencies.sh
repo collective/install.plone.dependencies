@@ -38,8 +38,8 @@ Now, You are ready to install Plone itself.\n\n\n
 Farewell my friend and may the Force be with you!" 20 78
 }
 
-usage() {
-    whiptail --title "Usage" --yesno --scrolltext "This script will try to detect your OS.\n
+show_HELP() {
+  whiptail --title "Usage" --yesno --scrolltext "This script will try to detect your OS. Scroll down ...\n
 After detection it will try to install all missing dependencies for the Plone CMS.\n
 Depending on your OS this scripts needs root or sudo permissions for some parts.\n\n\n
 There are also some options available:\n
@@ -106,7 +106,7 @@ case "$1" in
         check_OS
     ;;
 
-    "--h|--help")
+    "--help")
         show_HELP
     ;;
 
