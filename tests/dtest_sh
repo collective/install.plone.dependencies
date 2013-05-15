@@ -1,0 +1,19 @@
+#!/bin/sh
+# this script is really basic and without any checks, just for quick dirty and easy tests on fresh default installs
+# i am lazy ....
+
+HELPDIR='helper_scripts'
+
+#download base script
+wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/dev/check_dependencies.sh
+chmod +x check_dependencies.sh
+
+# prepare helper_scripts
+mkdir "$HELPDIR"
+cd "$HELPDIR"
+wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/dev/helper_scripts/check_ubuntu.sh
+wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/dev/helper_scripts/check_debian.sh
+wget --no-check-certificate https://raw.github.com/collective/install.plone.dependencies/dev/helper_scripts/check_centos.sh
+chmod +x check_ubuntu.sh
+chmod +x check_debian.sh
+chmod +x check_centos.sh
