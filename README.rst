@@ -13,9 +13,17 @@ Usage
 
 * Download the script::
 
-    wget https://raw.github.com/collective/install.plone.dependencies/master/install_dependencies.sh
+    wget https://github.com/collective/install.plone.dependencies/archive/master.zip
 
-* Make is executable::
+* Unzip that file::
+
+    unzip master
+
+* Chnage into the directory::
+
+    cd install.plone.dependencies-master
+
+* Make the script executable::
 
     chmod +x install_dependencies.sh
 
