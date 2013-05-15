@@ -41,7 +41,7 @@ Farewell my friend and may the Force be with you!" 20 78
 }
 
 HELP() {
-  whiptail --title "Usage" --yesno --scrolltext "This script will try to detect your OS. Scroll down ...\n
+  whiptail --title "Usage" --msgbox --scrolltext "This script will try to detect your OS. Scroll down ...\n
 After detection it will try to install all missing dependencies for the Plone CMS.\n
 Depending on your OS this scripts needs root or sudo permissions for some parts.\n\n\n
 There are also some options available:\n
