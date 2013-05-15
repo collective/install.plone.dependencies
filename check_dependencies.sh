@@ -12,7 +12,7 @@ error_exit()
 }
 
 # Info message, we use whipetail for that
-do_Readme() {
+README() {
   whiptail --title "Check Dependencies" --yesno "Welcome, \n
 This script will check your system for dependecies and if needed,
 install them. \n
@@ -20,7 +20,9 @@ For more information you should check developer.plone org.
 For help and support you should check plone.org/support.\n
 
 This script is tested with Ubuntu 12.04 \n
-Depending on your OS You will need to have root or sudo permissions.
+Depending on your OS You will need to have root or sudo permissions.\n
+If you don't know what sudo is, please read \n
+https://en.wikipedia.org/wiki/Sudo \n
 Continue ?" 20 78
 readmestatus=$?
 if [ $readmestatus = 1 ]; then
@@ -32,13 +34,13 @@ fi
 }
 
 # Info message, we use whipetail for that
-do_Farewell() {
+FAREWELL() {
   whiptail --title "Check Dependencies" --msgbox "All missing dependencies has been installed.\n
 Now, You are ready to install Plone itself.\n\n\n
 Farewell my friend and may the Force be with you!" 20 78
 }
 
-show_HELP() {
+HELP() {
   whiptail --title "Usage" --yesno --scrolltext "This script will try to detect your OS. Scroll down ...\n
 After detection it will try to install all missing dependencies for the Plone CMS.\n
 Depending on your OS this scripts needs root or sudo permissions for some parts.\n\n\n
@@ -50,7 +52,7 @@ This options will skip most parts of the script and will straight check and ints
 }
 
 #TODO: add centos check
-check_OS()
+CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
         LSB=$(lsb_release -c | egrep -o 'wheezy|squeeze|precise|quantal|raring')
@@ -93,27 +95,27 @@ fi
 # use that only if you now what are you doing
 case "$1" in
     "--ubuntu")
-        check_OS
-        do_Farewell
+        CHECK_OS
+        FAREWELL
     ;;
 
     "--debian")
         check_OS
-        do_Farewell
+        FAREWELL
     ;;
 
     "--centos")
-        check_OS
+        CHECK_OS
     ;;
 
     "--help")
-        show_HELP
+        HELP
     ;;
 
     "")
-        do_Readme
-        check_OS
-        do_Farewell
+        README
+        CHECK_OS
+        FAREWELL
     ;;
 esac
 

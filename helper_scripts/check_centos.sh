@@ -42,7 +42,7 @@ fi
 }
 
 # Info message, we use whipetail for that
-do_Farewell() {
+CENTOSMSG() {
   whiptail --title "Check Dependencies" --msgbox "All missing dependencies have been installed.\n
 Now, You are ready to install Plone itself.\n\n\n
 Since you are using CentOS, please make sure to run the installer with --static-lxml\n\n\n
@@ -52,7 +52,7 @@ Farewell my friend and may the Force be with you!" 20 78
 
 
 install_CentOS
-do_Farewell
+CENTOSMSG
 
 
 
