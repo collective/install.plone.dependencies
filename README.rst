@@ -35,7 +35,7 @@ Usage
 
    ./install_dependencies.sh --ubuntu
 
-   ./install_dependencies.sh --squezze
+   ./install_dependencies.sh --debian
 
    ./install_dependencies.sh --centos
 
