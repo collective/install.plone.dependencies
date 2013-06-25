@@ -13,7 +13,7 @@ error_exit()
 
 # Info message, we use whipetail for that
 README() {
-  whiptail --title "Check Dependencies" --yesno "Welcome, \n
+  whiptail --title "Check Dependencies" --msgbox --scrolltext "Welcome, \n
 This script will check your system for dependecies and if needed,
 install them. \n
 For more information you should check developer.plone org.
@@ -75,15 +75,15 @@ elif [ -f "/etc/redhat-release" ]; then
 fi
 
 if [ "$OS" == 'ubuntu' ]; then
-    helper_scripts/check_ubuntu.sh
+    . helper_scripts/check_ubuntu.sh
     #source check_ubuntu.sh
     #TODO: mv script to script dir and just call it,
     # rewrite function to 'just' a script
 elif [ "$OS" == 'wheezy' ]; then
-    helper_scripts/check_debian.sh
+    . helper_scripts/check_debian.sh
 
 elif [ "$OS" == 'centos' ]; then
-    helper_scripts/check_centos.sh
+    . helper_scripts/check_centos.sh
 
 else
     whiptail --title "Error" --msgbox "I am sorry but I can't find out which OS this is" 20 78
