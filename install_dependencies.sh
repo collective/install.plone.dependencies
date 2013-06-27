@@ -13,7 +13,7 @@ error_exit()
 
 # Info message, we use whipetail for that
 README() {
-  whiptail --title "Check Dependencies" --msgbox --scrolltext "Welcome, \n
+  whiptail --title "Check Dependencies" --yesno --scrolltext "Welcome, \n
 This script will check your system for dependecies and if needed,
 install them. \n
 For more information you should check developer.plone org.
