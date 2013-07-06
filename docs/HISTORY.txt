@@ -4,3 +4,7 @@
  - handle sudo authentication failure
  - logging commands output on a separate file (#4)
    [ale-rt]
+
+- add debian jessie to script
+- remove debian squeeze
+  [svx]

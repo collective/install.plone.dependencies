@@ -67,9 +67,10 @@ This options will skip most parts of the script and will straight check and ints
 CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
-        LSB=$(lsb_release -c | egrep -o 'wheezy|squeeze|precise|quantal|raring')
+        LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring')
         case $LSB in
-                wheezy) OS='wheezy';;
+                wheezy) OS='debian';;
+                jessie) OS='debian';;
                 precise) OS='ubuntu';;
                 quantal) OS='ubuntu';;
                 raring)  OS='ubuntu';;
@@ -91,7 +92,7 @@ if [ "$OS" == 'ubuntu' ]; then
     #source check_ubuntu.sh
     #TODO: mv script to script dir and just call it,
     # rewrite function to 'just' a script
-elif [ "$OS" == 'wheezy' ]; then
+elif [ "$OS" == 'debian' ]; then
     . helper_scripts/check_debian.sh
 
 elif [ "$OS" == 'centos' ]; then
