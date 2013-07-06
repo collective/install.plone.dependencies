@@ -64,6 +64,7 @@ elif [ "$OS" == 'centos' ]; then
 
 else
     OS_NOT_FOUND
+    error_exit
 fi
 }
 # Run the script with arguments or not for example:

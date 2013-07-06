@@ -4,6 +4,7 @@
 - handle
 - handle sudo authentication failure
 - logging commands output on a separate file (#4)
+- testing whiptail dialogs
   [ale-rt]
 
 - add debian jessie to script

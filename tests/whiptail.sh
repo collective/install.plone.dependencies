@@ -1,0 +1,13 @@
+#!/bin/bash
+exec 3>&1 4>&2
+. ./helper_scripts/whiptail_messages.sh
+
+README_MSG
+README_GOODBYE
+GOODBYE
+HELP
+OS_NOT_FOUND
+ASK_INSTALL_MISSING
+NO_INSTALL_WARNING
+CENTOS_SUCCESS
+

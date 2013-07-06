@@ -54,7 +54,6 @@ These options will skip OS detection and will go straight to checking and instal
 
 OS_NOT_FOUND() {
     WHIPTAIL --title "Error" --msgbox "Sorry, unable to detect Operating System" 20 78
-    error_exit
 }
 
 ASK_INSTALL_MISSING () {
