@@ -3,6 +3,7 @@
 # License:      GPL
 # Version:      0.1
 #================================================
+LOGFILE="install.log"
 
 # First our error_exit
 error_exit()
@@ -11,9 +12,20 @@ error_exit()
     exit 1
 }
 
-# Info message, we use whipetail for that
+# We want the redirect everything to a file
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1> $LOGFILE 2>&1
+
+# I want a wrapper for whiptail to display the interface
+WHIPTAIL () {
+    whiptail "$@" >&3
+    return "$?"
+}
+
+# Info message, we use whiptail for that
 README() {
-  whiptail --title "Check Dependencies" --yesno --scrolltext "Welcome, \n
+  WHIPTAIL --title "Check Dependencies" --yesno --scrolltext "Welcome, \n
 This script will check your system for dependecies and if needed,
 install them. \n
 For more information you should check developer.plone org.
@@ -26,7 +38,7 @@ https://en.wikipedia.org/wiki/Sudo \n
 Continue ?" 20 78
 readmestatus=$?
 if [ $readmestatus = 1 ]; then
-    whiptail --title "Error" --msgbox "You decided to cancel this script" 8 78
+    WHIPTAIL --title "Error" --msgbox "You decided to cancel this script" 8 78
     error_exit
 else
     :
@@ -35,13 +47,13 @@ fi
 
 # Info message, we use whipetail for that
 FAREWELL() {
-  whiptail --title "Check Dependencies" --msgbox "All missing dependencies has been installed.\n
+  WHIPTAIL --title "Check Dependencies" --msgbox "All missing dependencies has been installed.\n
 Now, You are ready to install Plone itself.\n\n\n
 Farewell my friend and may the Force be with you!" 20 78
 }
 
 HELP() {
-  whiptail --title "Usage" --msgbox --scrolltext "This script will try to detect your OS. Scroll down ...\n
+  WHIPTAIL --title "Usage" --msgbox --scrolltext "This script will try to detect your OS. Scroll down ...\n
 After detection it will try to install all missing dependencies for the Plone CMS.\n
 Depending on your OS this scripts needs root or sudo permissions for some parts.\n\n\n
 There are also some options available:\n
@@ -86,7 +98,7 @@ elif [ "$OS" == 'centos' ]; then
     . helper_scripts/check_centos.sh
 
 else
-    whiptail --title "Error" --msgbox "I am sorry but I can't find out which OS this is" 20 78
+    WHIPTAIL --title "Error" --msgbox "I am sorry but I can't find out which OS this is" 20 78
     error_exit
 fi
 }

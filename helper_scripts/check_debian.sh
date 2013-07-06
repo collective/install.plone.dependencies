@@ -26,7 +26,7 @@ MISSING_DEP=$MISSING_DEP' '$package
 done
 
 if [ -n "$MISSING_DEP" ]; then
-whiptail --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+WHIPTAIL --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
@@ -34,7 +34,7 @@ Want to install ? " 20 78
             #su -c 'apt-get --force-yes --yes install $MISSING_DEP'
             # TODO make oneline out of above lines
         else
-            whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
+            WHIPTAIL --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 8 78
          error_exit
         fi
