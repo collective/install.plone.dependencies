@@ -11,7 +11,6 @@ error_exit()
     exit 1
 }
 
-
 install_Ubuntu()
 {
     UBUNTUDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev
@@ -36,18 +35,16 @@ CANNOT_APT_GET_INSTALL() {
 }
 
 if [ -n "$MISSING_DEP" ]; then
-WHIPTAIL --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
-Want to install ? " 20 78
-        givestatus=$?
-        if [ $givestatus = 0 ]; then
-            sudo -v && APT_GET_INSTALL || CANNOT_APT_GET_INSTALL 2>&4
-            #sudo apt-get --force-yes --yes install $MISSING_DEP
-            sudo -K
-        else
-            WHIPTAIL --title "Cancel" --msgbox "You decided not to install missing dependecies \n
-         via this script, if you decide otherwise run this script again" 8 78
-         error_exit
-        fi
+    ASK_INSTALL_MISSING
+    givestatus=$?
+    if [ $givestatus = 0 ]; then
+        sudo -v && APT_GET_INSTALL || CANNOT_APT_GET_INSTALL 2>&4
+        #sudo apt-get --force-yes --yes install $MISSING_DEP
+        sudo -K
+    else
+        NO_INSTALL_WARNING
+        error_exit
+    fi
 fi
 }
 install_Ubuntu
