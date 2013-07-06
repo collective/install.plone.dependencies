@@ -25,18 +25,26 @@ MISSING_DEP=$MISSING_DEP' '$package
         fi
 done
 
+APT_GET_UPDATE() {
+    echo "Updating packages, please wait..."  >&3
+    sudo apt-get update
+    return "$?"
+}
+
+CANNOT_APT_GET_UPDATE() {
+    error_exit "Cannot continue... check $LOGFILE"  >&3
+}
+
 if [ -n "$MISSING_DEP" ]; then
-whiptail --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+WHIPTAIL --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            sudo -S apt-get update
-            #sudo -S apt-get --force-yes --yes install $MISSING_DEP
-            sudo -K # remove sudo timestamp
-            #TODO: create here a popup, if passwd is false
-            # make oneline out of above lines
+            sudo -v && APT_GET_UPDATE || CANNOT_APT_GET_UPDATE 2>&4
+            #sudo apt-get --force-yes --yes install $MISSING_DEP
+            sudo -K
         else
-            whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
+            WHIPTAIL --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 8 78
          error_exit
         fi
