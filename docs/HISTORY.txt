@@ -16,3 +16,6 @@
 - rename functions in chek_ubuntu.sh
 - remove sudo package from check_debian
   [svx]
+
+- Better strings (#9)
+  [ale-rt, polyester, svx]
