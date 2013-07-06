@@ -7,4 +7,10 @@
 
 - add debian jessie to script
 - remove debian squeeze
-  [svx]
+- rename func. FAREWELL to GOODBYE
+- update readme
+- cleanup install.dependencies.sh
+- update messages in check_centos.sh
+- rename functions in check_debian.sh
+- rename functions in chek_ubuntu.sh
+[svx]

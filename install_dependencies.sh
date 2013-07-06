@@ -17,13 +17,12 @@ exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1> $LOGFILE 2>&1
 
-# I want a wrapper for whiptail to display the interface
+# Wrapper for whiptail to display the interface
 WHIPTAIL () {
     whiptail "$@" >&3
     return "$?"
 }
 
-# Info message, we use whiptail for that
 README() {
   WHIPTAIL --title "Check Dependencies" --yesno --scrolltext "Welcome, \n
 This script will check your system for dependecies and if needed,
@@ -31,29 +30,27 @@ install them. \n
 For more information you should check developer.plone org.
 For help and support you should check plone.org/support.\n
 
-This script is tested with Ubuntu 12.04 \n
 Depending on your OS You will need to have root or sudo permissions.\n
 If you don't know what sudo is, please read \n
 https://en.wikipedia.org/wiki/Sudo \n
-Continue ?" 20 78
+Do you want to continue ?" 20 78
 readmestatus=$?
 if [ $readmestatus = 1 ]; then
-    WHIPTAIL --title "Error" --msgbox "You decided to cancel this script" 8 78
+    WHIPTAIL --title "Error" --msgbox "Sad to see you go ..." 8 78
     error_exit
 else
     :
 fi
 }
 
-# Info message, we use whipetail for that
-FAREWELL() {
-  WHIPTAIL --title "Check Dependencies" --msgbox "All missing dependencies has been installed.\n
+GOODBYE() {
+  WHIPTAIL --title "Check Dependencies" --msgbox "All missing dependencies have been installed.\n
 Now, You are ready to install Plone itself.\n\n\n
-Farewell my friend and may the Force be with you!" 20 78
+For more support or information, please visit: https://plone.org/support" 20 78
 }
 
 HELP() {
-  WHIPTAIL --title "Usage" --msgbox --scrolltext "This script will try to detect your OS. Scroll down ...\n
+  WHIPTAIL --title "Usage" --msgbox --scrolltext "This script will try to detect your OS.\n
 After detection it will try to install all missing dependencies for the Plone CMS.\n
 Depending on your OS this scripts needs root or sudo permissions for some parts.\n\n\n
 There are also some options available:\n
@@ -63,7 +60,6 @@ There are also some options available:\n
 This options will skip most parts of the script and will straight check and intsall dependencies" 20 78
 }
 
-#TODO: add centos check
 CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
@@ -89,12 +85,8 @@ fi
 
 if [ "$OS" == 'ubuntu' ]; then
     . helper_scripts/check_ubuntu.sh
-    #source check_ubuntu.sh
-    #TODO: mv script to script dir and just call it,
-    # rewrite function to 'just' a script
 elif [ "$OS" == 'debian' ]; then
     . helper_scripts/check_debian.sh
-
 elif [ "$OS" == 'centos' ]; then
     . helper_scripts/check_centos.sh
 
@@ -109,12 +101,12 @@ fi
 case "$1" in
     "--ubuntu")
         CHECK_OS
-        FAREWELL
+        GOODBYE
     ;;
 
     "--debian")
         check_OS
-        FAREWELL
+        GOODBYE
     ;;
 
     "--centos")
@@ -128,7 +120,7 @@ case "$1" in
     "")
         README
         CHECK_OS
-        FAREWELL
+        GOODBYE
     ;;
 esac
 

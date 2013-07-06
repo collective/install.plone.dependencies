@@ -33,9 +33,9 @@ if [ -n "$MISSING_CENTOSRPM" ]; then
         givestatus=$?
         if [ $givestatus = 0 ]; then
             echo "installing $MISSING_CENTOSRPM"
-            #su -c 'yum -y install '$MISSING_CENTOSRPM'
+            #su -c 'yum -y install '$MISSING_CENTOSRPM' 2>&4
         else
-            WHIPTAIL --title "Cancel" --msgbox "You decided not to install missing dependecies" 8 78
+            WHIPTAIL --title "Cancel" --msgbox "You decided not to install missing dependecies, you can always run this script again" 8 78
             error_exit
         fi
 fi
@@ -47,7 +47,7 @@ CENTOSMSG() {
   WHIPTAIL --title "Check Dependencies" --msgbox "All missing dependencies have been installed.\n
 Now, You are ready to install Plone itself.\n\n\n
 Since you are using CentOS, please make sure to run the installer with --static-lxml\n\n\n
-Farewell my friend and may the Force be with you!" 20 78
+For support and more information, please visit: https://plone.org/support" 20 78
 }
 
 
