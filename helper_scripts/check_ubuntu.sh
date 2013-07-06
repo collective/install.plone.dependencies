@@ -28,6 +28,11 @@ done
 APT_GET_UPDATE() {
     echo "Updating packages, please wait..."  >&3
     sudo apt-get update
+    return "$?"
+}
+
+CANNOT_APT_GET_UPDATE() {
+    error_exit "Cannot continue... check $LOGFILE"  >&3
 }
 
 if [ -n "$MISSING_DEP" ]; then
@@ -35,7 +40,7 @@ WHIPTAIL --title "Info" --yesno --scrolltext "These are packages that need to be
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            sudo -v && APT_GET_UPDATE 2>&4
+            sudo -v && APT_GET_UPDATE || CANNOT_APT_GET_UPDATE 2>&4
             #sudo apt-get --force-yes --yes install $MISSING_DEP
             sudo -K
         else
