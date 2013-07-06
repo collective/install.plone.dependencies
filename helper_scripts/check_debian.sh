@@ -25,16 +25,21 @@ MISSING_DEP=$MISSING_DEP' '$package
         fi
 done
 
+APT_GET_UPDATE() {
+    echo "Updating packages, please wait..."  >&3
+    su -c "apt-get update"
+    #su -c 'apt-get --force-yes --yes install $MISSING_DEP'
+    return "$?"
+}
+
 if [ -n "$MISSING_DEP" ]; then
-whiptail --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
+WHIPTAIL --title "Info" --yesno --scrolltext "These are packages that need to be installed :\n${MISSING_DEP// /\n} \n
 Want to install ? " 20 78
         givestatus=$?
         if [ $givestatus = 0 ]; then
-            su -c 'apt-get update'
-            #su -c 'apt-get --force-yes --yes install $MISSING_DEP'
-            # TODO make oneline out of above lines
+            APT_GET_UPDATE
         else
-            whiptail --title "Cancel" --msgbox "You decided not to install missing dependecies \n
+            WHIPTAIL --title "Cancel" --msgbox "You decided not to install missing dependecies \n
          via this script, if you decide otherwise run this script again" 8 78
          error_exit
         fi
