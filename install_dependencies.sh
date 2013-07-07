@@ -89,6 +89,10 @@ case "$1" in
         HELP
     ;;
 
+    "--dryryn")
+        . helper_scripts/dryrun.sh 
+    ;;
+
     "")
         README
         CHECK_OS
