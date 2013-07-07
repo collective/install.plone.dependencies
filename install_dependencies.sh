@@ -90,7 +90,7 @@ case "$1" in
     ;;
 
     "--dryryn")
-        . helper_scripts/dryrun.sh 
+        . helper_scripts/dryrun.sh
     ;;
 
     "")

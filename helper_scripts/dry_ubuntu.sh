@@ -4,6 +4,10 @@
 # Version:      0.1
 #================================================
 
+# Those are the messages for whiptail
+. whiptail_messages.sh
+
+
 # First our error_exit
 error_exit()
 {
@@ -11,7 +15,7 @@ error_exit()
     exit 1
 }
 
-install_Ubuntu()
+dry_install_Ubuntu()
 {
     UBUNTUDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev
     zlib1g-dev python-setuptools python-dev libjpeg62-dev
@@ -24,9 +28,9 @@ MISSING_DEP=$MISSING_DEP' '$package
         fi
 done
 
-APT_GET_INSTALL() {
+APT_GET_DRY_RUN() {
     echo "Updating packages, please wait..."  >&3
-    sudo apt-get update
+    sudo apt-get install --dry-run
     return "$?"
 }
 
@@ -35,16 +39,14 @@ CANNOT_APT_GET_INSTALL() {
 }
 
 if [ -n "$MISSING_DEP" ]; then
-    ASK_INSTALL_MISSING
+#    ASK_INSTALL_MISSING
     givestatus=$?
     if [ $givestatus = 0 ]; then
-        sudo -v && APT_GET_INSTALL || CANNOT_APT_GET_INSTALL 2>&4
-        #sudo apt-get --force-yes --yes install $MISSING_DEP
+        sudo -v && APT_GET_DRY_RUN || CANNOT_APT_GET_INSTALL 2>&4
         sudo -K
     else
-        NO_INSTALL_WARNING
         error_exit
     fi
 fi
 }
-install_Ubuntu
+dry_install_Ubuntu

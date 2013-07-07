@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LOGFILE="dryrun.log"
+LOGFILE="../dryrun.log"
 
 
 # First our error_exit
@@ -40,14 +40,14 @@ fi
 
 
 if [ "$OS" == 'ubuntu' ]; then
-    . helper_scripts/dry_ubuntu.sh
+    . dry_ubuntu.sh
 elif [ "$OS" == 'debian' ]; then
-    . helper_scripts/dry_debian.sh
+    . dry_debian.sh
 elif [ "$OS" == 'centos' ]; then
-    . helper_scripts/dry_centos.sh
+    . dry_centos.sh
 
 else
     error_exit
 fi
 }
-
+DRY_OS
