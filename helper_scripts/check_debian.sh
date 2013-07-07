@@ -26,9 +26,9 @@ MISSING_DEP=$MISSING_DEP' '$package
 done
 
 APT_GET_INSTALL() {
-    echo "Updating packages, please wait..."  >&3
-    su -c "apt-get update"
-    #su -c 'apt-get --force-yes --yes install $MISSING_DEP'
+    echo "Installing packages, please wait..."  >&3
+    #su -c "apt-get update"
+    su -c 'apt-get --force-yes --yes install $MISSING_DEP'
     return "$?"
 }
 
