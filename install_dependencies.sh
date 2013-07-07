@@ -89,10 +89,6 @@ case "$1" in
         HELP
     ;;
 
-    "--dryrun")
-        
-    ;;
-
     "")
         README
         CHECK_OS
