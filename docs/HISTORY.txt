@@ -16,6 +16,7 @@
 - rename functions in check_debian.sh
 - rename functions in chek_ubuntu.sh
 - remove sudo package from check_debian
+- fix typo in install_dependencies, checking debian is working now
   [svx]
 
 - Better strings (#9)

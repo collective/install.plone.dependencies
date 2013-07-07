@@ -77,7 +77,7 @@ case "$1" in
     ;;
 
     "--debian")
-        check_OS
+        Check_OS
         GOODBYE
     ;;
 
@@ -87,6 +87,10 @@ case "$1" in
 
     "--help")
         HELP
+    ;;
+
+    "--dryrun")
+        
     ;;
 
     "")
