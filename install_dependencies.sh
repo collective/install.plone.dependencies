@@ -77,7 +77,7 @@ case "$1" in
     ;;
 
     "--debian")
-        check_OS
+        CHECK_OS
         GOODBYE
     ;;
 
