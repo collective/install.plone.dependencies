@@ -28,11 +28,11 @@ install_CentOS()
 done
 
 if [ -n "$MISSING_CENTOSRPM" ]; then
-    ASK_INSTALL_MISSING
+    ASK_INSTALL_MISSING_CENTOS
     givestatus=$?
     if [ $givestatus = 0 ]; then
-        echo "installing $MISSING_CENTOSRPM"
-        #su -c 'yum -y install '$MISSING_CENTOSRPM' 2>&4
+        #echo "installing $MISSING_CENTOSRPM"
+        su -c 'yum -y install '$MISSING_CENTOSRPM' 2>&4
     else
         NO_INSTALL_WARNING
         error_exit

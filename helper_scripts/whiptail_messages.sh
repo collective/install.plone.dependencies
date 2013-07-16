@@ -62,6 +62,13 @@ ASK_INSTALL_MISSING () {
 Want to install ? " 20 78
 }
 
+ASK_INSTALL_MISSING_CENTOS () {
+    WHIPTAIL --title "Missing packages" --yesno --scrolltext \
+"These are the packages that need to be installed :\n${MISSING_CENTOSRPM// /\n} \n
+Want to install ? " 20 78
+}
+
+
 NO_INSTALL_WARNING () {
     WHIPTAIL --title "Cancel" --msgbox  \
 "You decided not to install missing dependencies via this script.

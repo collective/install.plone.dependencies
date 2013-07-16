@@ -1,3 +1,11 @@
+
+0.2 - (unreleased)
+==================
+
+- fix whiptail message for centos: ASK_INSTALL_MISSING_CENTOS
+  [svx]
+
+
 0.1 - (unreleased)
 ==================
 
