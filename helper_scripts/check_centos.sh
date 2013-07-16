@@ -32,7 +32,7 @@ if [ -n "$MISSING_CENTOSRPM" ]; then
     givestatus=$?
     if [ $givestatus = 0 ]; then
         #echo "installing $MISSING_CENTOSRPM"
-        su -c 'yum -y install '$MISSING_CENTOSRPM' 2>&4
+        yum -y install '$MISSING_CENTOSRPM' 2>&4
     else
         NO_INSTALL_WARNING
         error_exit
