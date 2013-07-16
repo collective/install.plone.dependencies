@@ -31,8 +31,9 @@ if [ -n "$MISSING_CENTOSRPM" ]; then
     ASK_INSTALL_MISSING_CENTOS
     givestatus=$?
     if [ $givestatus = 0 ]; then
+        echo "Installing packages, please wait..."  >&3
         #echo "installing $MISSING_CENTOSRPM"
-        yum -y install '$MISSING_CENTOSRPM' 2>&4
+        yum -y install $MISSING_CENTOSRPM 2>&4
     else
         NO_INSTALL_WARNING
         error_exit
