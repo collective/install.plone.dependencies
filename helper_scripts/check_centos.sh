@@ -15,7 +15,7 @@ error_exit()
 install_CentOS()
 {
     CENTOSRPM='gcc-c++ patch openssl-devel libjpeg-devel libxslt-devel
-    readline-devel make which wv xpdf libxslt-devel zlib-devel'
+    readline-devel make which'
 
     MISSING_CENTOSRPM=''
 
