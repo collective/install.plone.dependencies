@@ -33,6 +33,7 @@ if [ -n "$MISSING_CENTOSRPM" ]; then
     if [ $givestatus = 0 ]; then
         echo "installing $MISSING_CENTOSRPM"
         #su -c 'yum -y install '$MISSING_CENTOSRPM' 2>&4
+        rpm -ivh $MISSING_CENTOSRPM –test
     else
         NO_INSTALL_WARNING
         error_exit
