@@ -34,13 +34,14 @@ README() {
 CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
-    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring')
+    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring|lucid')
     case $LSB in
         wheezy) OS='debian';;
         jessie) OS='debian';;
         precise) OS='ubuntu';;
         quantal) OS='ubuntu';;
         raring)  OS='ubuntu';;
+        lucid)   OS='ubuntu';;
     esac
 
 elif [ -f "/etc/redhat-release" ]; then
