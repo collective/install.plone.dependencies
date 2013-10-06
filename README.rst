@@ -36,9 +36,17 @@ Usage
 
 * Run it with arguments::
 
-   ./install_dependencies.sh --ubuntu
+   ./install_dependencies.sh --wheezy
 
-   ./install_dependencies.sh --debian
+   ./install_dependencies.sh --jessie
+
+   ./install_dependencies.sh --raring
+
+   ./install_dependencies.sh --precise
+
+   ./install_dependencies.sh --quantal
+
+   ./install_dependencies.sh --lucid
 
    ./install_dependencies.sh --centos
 
