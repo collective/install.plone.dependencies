@@ -45,8 +45,8 @@ Help and support: http://plone.org/support
 (scroll down for more)
 
 There are also some options available:
-./install_dependencies.sh --ubuntu
-./install_dependencies.sh --debian
+./install_dependencies.sh --lucid
+./install_dependencies.sh --jessie
 ./install_dependencies.sh --centos
 
 These options will skip OS detection and will go straight to checking and installing dependencies" 20 78
