@@ -58,7 +58,7 @@ fi
 
 if [ "$OS" == 'wheezy' ]; then
     . helper_scripts/check_debian.sh
-elif [ "$OS" == 'jessy' ]; then
+elif [ "$OS" == 'jessie' ]; then
     . helper_scripts/check_debian.sh
 elif [ "$OS" == 'precise' ]; then
     . helper_scripts/check_precise.sh
@@ -80,12 +80,32 @@ fi
 # install_dependencies.sh --ubuntu
 # use that only if you now what are you doing
 case "$1" in
-    "--ubuntu")
+    "--wheezy")
         CHECK_OS
         GOODBYE
     ;;
 
-    "--debian")
+    "--jessie")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--precise")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--quantal")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--raring")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--lucid")
         Check_OS
         GOODBYE
     ;;
