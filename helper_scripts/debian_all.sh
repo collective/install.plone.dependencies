@@ -11,7 +11,11 @@ error_exit()
     echo "$1" 1>&2
     exit 1
 }
-
+ASK_INSTALL_MISSING () {
+    WHIPTAIL --title "Missing packages" --yesno --scrolltext \
+"These are the packages that need to be installed :\n${MISSING_DEP// /\n} \n
+Want to install ? " 20 78
+}
 
 install_Debian()
 {
