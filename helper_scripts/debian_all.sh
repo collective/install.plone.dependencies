@@ -12,7 +12,7 @@ error_exit()
     exit 1
 }
 
-install_Debian Wrapper for whiptail to display the interface on console
+#install_Debian Wrapper for whiptail to display the interface on console
 WHIPTAIL () {
     whiptail "$@" >&3
     return "$?"
