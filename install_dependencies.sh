@@ -34,13 +34,14 @@ README() {
 CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
-    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring')
+    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring|lucid')
     case $LSB in
-        wheezy) OS='debian';;
-        jessie) OS='debian';;
-        precise) OS='ubuntu';;
-        quantal) OS='ubuntu';;
-        raring)  OS='ubuntu';;
+        wheezy) OS='wheezy';;
+        jessie) OS='jessie';;
+        precise) OS='precise';;
+        quantal) OS='quantal';;
+        raring)  OS='raring';;
+        lucid)   OS='lucid';;
     esac
 
 elif [ -f "/etc/redhat-release" ]; then
@@ -55,10 +56,18 @@ elif [ -f "/etc/redhat-release" ]; then
 fi
 
 
-if [ "$OS" == 'ubuntu' ]; then
-    . helper_scripts/check_ubuntu.sh
-elif [ "$OS" == 'debian' ]; then
+if [ "$OS" == 'wheezy' ]; then
     . helper_scripts/check_debian.sh
+elif [ "$OS" == 'jessie' ]; then
+    . helper_scripts/check_debian.sh
+elif [ "$OS" == 'precise' ]; then
+    . helper_scripts/check_precise.sh
+elif [ "$OS" == 'quantal' ]; then
+    . helper_scripts/check_quantal.sh
+elif [ "$OS" == 'raring' ]; then
+    . helper_scripts/check_raring.sh
+elif [ "$OS" == 'lucid' ]; then
+    . helper_scripts/check_lucid.sh
 elif [ "$OS" == 'centos' ]; then
     . helper_scripts/check_centos.sh
 
@@ -71,12 +80,32 @@ fi
 # install_dependencies.sh --ubuntu
 # use that only if you now what are you doing
 case "$1" in
-    "--ubuntu")
+    "--wheezy")
         CHECK_OS
         GOODBYE
     ;;
 
-    "--debian")
+    "--jessie")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--precise")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--quantal")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--raring")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--lucid")
         Check_OS
         GOODBYE
     ;;
