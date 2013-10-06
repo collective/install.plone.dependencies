@@ -57,9 +57,9 @@ fi
 
 
 if [ "$OS" == 'wheezy' ]; then
-    . helper_scripts/check_debian.sh
+    . helper_scripts/curl_debian.sh
 elif [ "$OS" == 'jessie' ]; then
-    . helper_scripts/check_debian.sh
+    . helper_scripts/curl_debian.sh
 elif [ "$OS" == 'precise' ]; then
     . helper_scripts/check_precise.sh
 elif [ "$OS" == 'quantal' ]; then
