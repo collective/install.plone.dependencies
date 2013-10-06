@@ -12,14 +12,10 @@ error_exit()
     exit 1
 }
 
-#install_Debian Wrapper for whiptail to display the interface on console
-WHIPTAIL () {
-    whiptail "$@" >&3
-    return "$?"
-}
+
 
 ASK_INSTALL_MISSING () {
-    WHIPTAIL --title "Missing packages" --yesno --scrolltext \
+    whiptail --title "Missing packages" --yesno --scrolltext \
 "These are the packages that need to be installed :\n${MISSING_DEP// /\n} \n
 Want to install ? " 20 78
 }
