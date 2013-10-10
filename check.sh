@@ -6,7 +6,8 @@
 LOGFILE="install.log"
 
 # Those are the messages for whiptail
-. helper_scripts/whiptail_messages.sh
+wget https://raw.github.com/collective/install.plone.dependencies/curl/helper_scripts/whiptail_messages.sh
+. whiptail_messages.sh
 
 # First our error_exit
 error_exit()
@@ -57,7 +58,7 @@ fi
 
 
 if [ "$OS" == 'wheezy' ]; then
-    . helper_scripts/wget_debian.sh
+    bash -i <(wget -qO- https://raw.github.com/collective/install.plone.dependencies/master/helper_scripts/check_debian.sh)
 elif [ "$OS" == 'jessie' ]; then
     . helper_scripts/wget_debian.sh
 elif [ "$OS" == 'precise' ]; then
