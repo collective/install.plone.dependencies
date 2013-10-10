@@ -1,5 +1,6 @@
 #!/bin/sh
 # Wrapper for whiptail to display the interface on console
+
 WHIPTAIL () {
     whiptail "$@" >&3
     return "$?"
