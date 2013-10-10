@@ -6,7 +6,11 @@
 LOGFILE="install.log"
 
 # Those are the messages for whiptail
-wget https://raw.github.com/collective/install.plone.dependencies/wget/helper_scripts/whiptail_messages.sh
+if [ ! -f whiptail_messages.sh ]
+then
+    wget https://raw.github.com/collective/install.plone.dependencies/wget/helper_scripts/whiptail_messages.sh
+fi
+
 . whiptail_messages.sh
 
 # First our error_exit
