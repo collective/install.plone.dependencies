@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-
+# Description:  check Debian [7] for Plone dependencies
 # License:      GPL
 # Version:      0.1
 #================================================
@@ -13,12 +12,6 @@ error_exit()
 }
 
 ###
-#install_Debian Wrapper for whiptail to display the interface on console
-WHIPTAIL () {
-    whiptail "$@" >&3
-    return "$?"
-}
-
 README_MSG() {
     whiptail --title "Welcome" --yesno --scrolltext \
 "This script will check for dependencies and if needed, install them.
@@ -59,9 +52,9 @@ Help and support: http://plone.org/support
 (scroll down for more)
 
 There are also some options available:
-./install_dependencies.sh --wheezzy
-./install_dependencies.sh --jessie
-./install_dependencies.sh --lucid
+./install_dependencies.sh --ubuntu
+./install_dependencies.sh --debian
+./install_dependencies.sh --centos
 
 These options will skip OS detection and will go straight to checking and installing dependencies" 20 78
 }
@@ -103,12 +96,6 @@ For support and more information, please visit: https://plone.org/support" 20 78
 
 ###
 
-ASK_INSTALL_MISSING () {
-    whiptail --title "Missing packages" --yesno --scrolltext \
-"These are the packages that need to be installed :\n${MISSING_DEP// /\n} \n
-Want to install ? " 20 78
-}
-
 install_Debian()
 {
     DEBIANDEPS='build-essential libssl-dev libxml2-dev libxslt1-dev libbz2-dev
@@ -140,4 +127,4 @@ if [ -n "$MISSING_DEP" ]; then
     fi
 fi
 }
-
+install_Debian
