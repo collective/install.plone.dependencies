@@ -58,7 +58,7 @@ fi
 
 
 if [ "$OS" == 'wheezy' ]; then
-    bash -i <(wget -qO- https://raw.github.com/collective/install.plone.dependencies/wget/helper_scripts/check_debian_all.sh)
+    check_debian_all.sh)
 elif [ "$OS" == 'jessie' ]; then
     . helper_scripts/wget_debian.sh
 elif [ "$OS" == 'precise' ]; then
