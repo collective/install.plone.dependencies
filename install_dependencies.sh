@@ -34,7 +34,7 @@ README() {
 CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
-    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring|lucid')
+    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring|lucid|trusty')
     case $LSB in
         wheezy) OS='wheezy';;
         jessie) OS='jessie';;
@@ -42,6 +42,7 @@ if [ -f "/etc/debian_version" ]; then
         quantal) OS='quantal';;
         raring)  OS='raring';;
         lucid)   OS='lucid';;
+        trusty) OS='trusty';;
     esac
 
 elif [ -f "/etc/redhat-release" ]; then
@@ -68,6 +69,8 @@ elif [ "$OS" == 'raring' ]; then
     . helper_scripts/check_raring.sh
 elif [ "$OS" == 'lucid' ]; then
     . helper_scripts/check_lucid.sh
+elif [ "$OS" == 'trusty' ]; then
+    . helper_scripts/check_trusty.sh
 elif [ "$OS" == 'centos' ]; then
     . helper_scripts/check_centos.sh
 
