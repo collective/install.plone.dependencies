@@ -130,13 +130,13 @@ General help and support: http://plone.org/support
 
 ASK_INSTALL_MISSING () {
     WHIPTAIL --title="Missing packages" --yesno \
-"These are the packages that need to be installed :\n${MISSING_DEP// /\n} \n
+"These are the packages that need to be installed :\n${MISSING_DEP// /\\n} \n
 Want to install ? "
 }
 
 ASK_INSTALL_MISSING_CENTOS () {
     WHIPTAIL --title="Missing packages" --yesno --scrolltext \
-"These are the packages that need to be installed :\n${MISSING_CENTOSRPM// /\n} \n
+"These are the packages that need to be installed :\n${MISSING_CENTOSRPM// /\\n} \n
 Want to install ? "
 }
 
