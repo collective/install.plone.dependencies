@@ -46,8 +46,10 @@ WHIPTAIL () {
     fi
 
     if [ $whipdialog == "bashme" ]; then
-        echo "$title"
         echo
+        echo "=========================================="
+        echo "$title"
+        echo "=========================================="
         case "$dtype" in
             --yesno)
                 echo "$prompt"
@@ -90,14 +92,17 @@ WHIPTAIL () {
         esac
     else
         if [ "$dtype" == "--menu" ]; then
-            # double the choices
+# double the choices
             DCHOICES=()
             for item in "${MENU_CHOICES[@]}"; do
-                DCHOICES=("${DCHOICES[@]}" "item")
+                DCHOICES=("${DCHOICES[@]}" "$item" "")
             done
-            WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width ${#MENU_CHOICES[@]} "${MENU_CHOICES[@]}" 3>&1 1>&2 2>&3)
+            WHIPTAIL_RESULT=$($whipdialog --title "$title" \
+                $dtype "$prompt" $height $width \
+                ${#MENU_CHOICES[@]} "${DCHOICES[@]}" 3>&1 1>&2 2>&3)
         else
-            WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width 3>&1 1>&2 2>&3)
+            WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" \
+                $height $width 3>&1 1>&2 2>&3)
         fi
     fi
     return $?
