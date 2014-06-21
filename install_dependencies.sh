@@ -15,10 +15,12 @@ error_exit()
     exit 1
 }
 
-# We want the redirect everything to a file
-exec 3>&1 4>&2
-trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1> $LOGFILE 2>&1
+# We want the redirect everything to a file.
+# We may *want* to, but we don't understand how this works.
+# ;)
+# exec 3>&1 4>&2
+# trap 'exec 2>&4 1>&3' 0 1 2 3
+# exec 1> $LOGFILE 2>&1
 
 README() {
     README_MSG
@@ -118,6 +120,7 @@ case "$1" in
 
     "--help")
         HELP
+        exit 0
     ;;
 
     "")
