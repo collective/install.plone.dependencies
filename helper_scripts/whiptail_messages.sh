@@ -90,7 +90,12 @@ WHIPTAIL () {
         esac
     else
         if [ "$dtype" == "--menu" ]; then
-            echo not implemented
+            # double the choices
+            DCHOICES=()
+            for item in "${MENU_CHOICES[@]}"; do
+                DCHOICES=("${DCHOICES[@]}" "item")
+            done
+            WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width ${#MENU_CHOICES[@]} "${MENU_CHOICES[@]}" 3>&1 1>&2 2>&3)
         else
             WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width 3>&1 1>&2 2>&3)
         fi
