@@ -40,9 +40,9 @@ WHIPTAIL () {
     fi
 
     if [ $whipdialog == "bashme" ]; then
-        echo $title
+        echo "$title"
         echo
-        echo $prompt
+        echo "$prompt"
         echo
         case "$dtype" in
             "--yesno" )
@@ -100,7 +100,7 @@ For more support or information, please visit: https://plone.org/support"
 
 HELP() {
     WHIPTAIL --title="Usage" --msgbox --scrolltext \
-"This script will try to detect your OS, and will try to install all missing dependencies for Plone, \
+"""This script will try to detect your OS, and will try to install all missing dependencies for Plone
 using the package manager for your OS.
 
 Depending on your OS this scripts needs sudo or root permissions.
@@ -115,7 +115,7 @@ There are also some options available:
 ./install_dependencies.sh --jessie
 ./install_dependencies.sh --centos
 
-These options will skip OS detection and will go straight to checking and installing dependencies"
+These options will skip OS detection and will go straight to checking and installing dependencies"""
 }
 
 OS_NOT_FOUND() {
