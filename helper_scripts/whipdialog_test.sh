@@ -1,4 +1,4 @@
-!#/bin/env bash
+#!/bin/env bash
 
 . whiptail_messages.sh
 
@@ -13,8 +13,13 @@ INBOX=$WHIPTAIL_RESULT
 WHIPTAIL --title="Password Box" --passwordbox "Tell me something private."
 PRIVATE=$WHIPTAIL_RESULT
 
+MENU_CHOICES=("One" "Two 2" "Three")
+WHIPTAIL --title="Menu" --menu "Draw me a menu"
+MENU=$WHIPTAIL_RESULT
+
 echo
 echo $DECISION
 echo $INBOX
 echo $PRIVATE
+echo $MENU
 

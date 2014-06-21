@@ -16,17 +16,20 @@ WHIPTAIL () {
             --width=*)
                 width=$optarg
                 ;;
-            --yesno | --msgbox | --inputbox | --passwordbox )
+            --yesno | --msgbox | --inputbox | --passwordbox | --menu )
                 dtype=$option
                 ;;
             --title=* )
-                title=$optarg
+                title="$optarg"
                 ;;
             --scrolltext )
                 scrolltext=$option
                 ;;
+            --choices )
+                choices="$optarg"
+                ;;
             *)
-                prompt=$option
+                prompt="$option"
                 ;;
         esac
     done
@@ -62,21 +65,35 @@ WHIPTAIL () {
                     esac
                 done
                 ;;
+            --menu)
+                echo $prompt
+                select answer in "${MENU_CHOICES[@]}"; do
+                    WHIPTAIL_RESULT="$answer"
+                    break
+                done
+                ;;
             --msgbox)
                 echo "$prompt"
                 echo
                 read -p "Press any key: " -n 1
                 echo
                 ;;
-            --inputbox | --passwordbox)
+            --inputbox)
                 read -e -p "$prompt" WHIPTAIL_RESULT
+                ;;
+            --passwordbox)
+                read -e -s -p "$prompt" WHIPTAIL_RESULT
                 ;;
             *)
                 echo "Unknown dialog type"
                 exit 1
         esac
     else
-        WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width 3>&1 1>&2 2>&3)
+        if [ "$dtype" == "--menu" ]; then
+            echo not implemented
+        else
+            WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width 3>&1 1>&2 2>&3)
+        fi
     fi
     return $?
 }
