@@ -2,13 +2,13 @@
 # Wrapper for whiptail/dialog to display the interface on console
 
 WHIPTAIL () {
-    if [ "X$whipdialog" = "X" ]; then
+    if [ "X$whipdialog" == "X" ]; then
         whipdialog=`which dialog`
-	if [ $? != 0 ]; then
+	if [ $? -gt 0 ]; then
 	    whipdialog=`which whiptail`
 	fi
     fi
-    if [ "X$whipdialog" = "X" ]; then
+    if [ "X$whipdialog" == "X" ]; then
         echo "This program requires either the dialog or whiptail dialog-box programs."
 	exit 1
     fi
@@ -24,7 +24,7 @@ Depending on your OS you will need root or sudo permissions.
 
 For more information and options, re-run this script with --help
 
-Do you want to continue ?" 20 78
+Do you want to continue?" 20 78
 }
 
 README_GOODBYE() {
@@ -68,7 +68,7 @@ OS_NOT_FOUND() {
 }
 
 ASK_INSTALL_MISSING () {
-    WHIPTAIL --title "Missing packages" --yesno --scrolltext \
+    WHIPTAIL --title "Missing packages" --yesno \
 "These are the packages that need to be installed :\n${MISSING_DEP// /\n} \n
 Want to install ? " 20 78
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Description:  check for OS and apply dependecies script
+# Description:  check for OS and apply dependencies script
 # License:      GPL
 # Version:      0.1
 #================================================
@@ -22,8 +22,7 @@ exec 1> $LOGFILE 2>&1
 
 README() {
     README_MSG
-    readmestatus=$?
-    if [ $readmestatus = 1 ]; then
+    if [ $? -gt 0 ]; then
         README_GOODBYE
         error_exit
     else
