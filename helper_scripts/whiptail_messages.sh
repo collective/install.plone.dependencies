@@ -4,6 +4,7 @@
 WHIPTAIL () {
     height=20
     width=78
+    dtype=error
     for option; do
         optarg=`expr "x$option" : 'x[^=]*=\(.*\)'`
         case $option in
@@ -13,7 +14,7 @@ WHIPTAIL () {
             --width=*)
                 width=$optarg
                 ;;
-            --yesno | --msgbox )
+            --yesno | --msgbox | --inputbox )
                 dtype=$option
                 ;;
             --title=* )
@@ -42,10 +43,10 @@ WHIPTAIL () {
     if [ $whipdialog == "bashme" ]; then
         echo "$title"
         echo
-        echo "$prompt"
-        echo
         case "$dtype" in
-            "--yesno" )
+            --yesno)
+                echo "$prompt"
+                echo
                 select answer in "Yes" "No"; do
                     case $answer in
                         "Yes")
@@ -59,18 +60,23 @@ WHIPTAIL () {
                     esac
                 done
                 ;;
-            "--msgbox" )
+            --msgbox)
+                echo "$prompt"
+                echo
                 read -p "Press any key: " -n 1
                 echo
                 ;;
-            \*)
+            --inputbox)
+                read -e -p "$prompt" WHIPTAIL_RESULT
+                ;;
+            *)
                 echo "Unknown dialog type"
                 exit 1
         esac
     else
-        $whipdialog --title "$title" $dtype "$prompt" $height $width
+        echo $whipdialog --title "$title" $dtype "$prompt" $height $width
+        exit
     fi
-    return "$?"
 }
 
 README_MSG() {
