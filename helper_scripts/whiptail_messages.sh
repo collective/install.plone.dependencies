@@ -5,7 +5,8 @@ WHIPTAIL () {
     height=20
     width=78
     dtype=error
-    echo $@
+    scrolltext=""
+    title=""
     for option; do
         optarg=`expr "x$option" : 'x[^=]*=\(.*\)'`
         case $option in
@@ -15,7 +16,7 @@ WHIPTAIL () {
             --width=*)
                 width=$optarg
                 ;;
-            --yesno | --msgbox | --inputbox )
+            --yesno | --msgbox | --inputbox | --passwordbox )
                 dtype=$option
                 ;;
             --title=* )
@@ -67,7 +68,7 @@ WHIPTAIL () {
                 read -p "Press any key: " -n 1
                 echo
                 ;;
-            --inputbox)
+            --inputbox | --passwordbox)
                 read -e -p "$prompt" WHIPTAIL_RESULT
                 ;;
             *)
@@ -77,6 +78,7 @@ WHIPTAIL () {
     else
         WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width 3>&1 1>&2 2>&3)
     fi
+    return $?
 }
 
 README_MSG() {
