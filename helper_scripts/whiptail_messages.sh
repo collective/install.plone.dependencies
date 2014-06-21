@@ -1,12 +1,23 @@
 #!/bin/sh
-# Wrapper for whiptail to display the interface on console
+# Wrapper for whiptail/dialog to display the interface on console
+
 WHIPTAIL () {
-    whiptail "$@" >&3
+    if [ "X$whipdialog" = "X" ]; then
+        whipdialog=`which dialog`
+	if [ $? != 0 ]; then
+	    whipdialog=`which whiptail`
+	fi
+    fi
+    if [ "X$whipdialog" = "X" ]; then
+        echo "This program requires either the dialog or whiptail dialog-box programs."
+	exit 1
+    fi
+    $whipdialog "$@" >&3
     return "$?"
 }
 
 README_MSG() {
-    WHIPTAIL --title "Welcome" --yesno --scrolltext \
+    WHIPTAIL --title "Welcome" --yesno \
 "This script will check for dependencies and if needed, install them.
 
 Depending on your OS you will need root or sudo permissions.
