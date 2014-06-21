@@ -5,6 +5,7 @@ WHIPTAIL () {
     height=20
     width=78
     dtype=error
+    echo $@
     for option; do
         optarg=`expr "x$option" : 'x[^=]*=\(.*\)'`
         case $option in
@@ -74,8 +75,7 @@ WHIPTAIL () {
                 exit 1
         esac
     else
-        echo $whipdialog --title "$title" $dtype "$prompt" $height $width
-        exit
+        WHIPTAIL_RESULT=$($whipdialog --title "$title" $dtype "$prompt" $height $width 3>&1 1>&2 2>&3)
     fi
 }
 
