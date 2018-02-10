@@ -8,7 +8,7 @@ Introduction
 
 Currently this script is tested with Ubuntu 12.04, 12.10, 13.04 and Debian 7 [Wheezy]
 
-Support for Debian 8 [Jessie], Centos 6.3 and Centos 6.4 is included but at
+Support for Debian 8 [Jessie], Debian 9 [Stretch], Centos 6.3 and Centos 6.4 is included but at
 the moment considered to be experimental.
 
 Usage
@@ -39,6 +39,8 @@ Usage
    ./install_dependencies.sh --wheezy
 
    ./install_dependencies.sh --jessie
+
+   ./install_dependencies.sh --stretch
 
    ./install_dependencies.sh --raring
 

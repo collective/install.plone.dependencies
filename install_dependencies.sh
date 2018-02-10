@@ -35,10 +35,11 @@ README() {
 CHECK_OS()
 {
 if [ -f "/etc/debian_version" ]; then
-    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|precise|quantal|raring|lucid|trusty')
+    LSB=$(lsb_release -c | egrep -o 'wheezy|jessie|stretch|precise|quantal|raring|lucid|trusty')
     case $LSB in
         wheezy) OS='wheezy';;
         jessie) OS='jessie';;
+        stretch) OS='stretch';;
         precise) OS='precise';;
         quantal) OS='quantal';;
         raring)  OS='raring';;
@@ -62,6 +63,8 @@ if [ "$OS" == 'wheezy' ]; then
     . helper_scripts/check_debian.sh
 elif [ "$OS" == 'jessie' ]; then
     . helper_scripts/check_debian.sh
+elif [ "$OS" == 'stretch' ]; then
+    . helper_scripts/check_debian_stretch.sh
 elif [ "$OS" == 'precise' ]; then
     . helper_scripts/check_precise.sh
 elif [ "$OS" == 'quantal' ]; then
@@ -90,6 +93,11 @@ case "$1" in
     ;;
 
     "--jessie")
+        Check_OS
+        GOODBYE
+    ;;
+
+    "--stretch")
         Check_OS
         GOODBYE
     ;;

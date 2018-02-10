@@ -2,6 +2,9 @@
 0.2 - (unreleased)
 ==================
 
+- add debian stretch script
+  [macagua]
+
 - fix whiptail message for centos: ASK_INSTALL_MISSING_CENTOS
   [svx]
 
